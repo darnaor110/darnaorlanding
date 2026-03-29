@@ -1,0 +1,398 @@
+<!DOCTYPE html><html class="dark" dir="rtl" lang="he"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-secondary-fixed-variant": "#1e4c5d", "secondary-fixed": "#bce9fe", "tertiary-fixed": "#ffdcc1", "on-error-container": "#ffdad6", error: "#ffb4ab", "on-background": "#dee3e7", "on-surface-variant": "#bcc8cf", "surface-bright": "#343a3d", secondary: "#a1cde1", "on-tertiary": "#4c2700", "error-container": "#93000a", "on-surface": "#dee3e7", "surface-container-lowest": "#090f12", "surface-dim": "#0e1417", "on-error": "#690005", outline: "#869399", "surface-variant": "#303639", "surface-container": "#1b2023", "on-tertiary-fixed": "#2e1500", "inverse-primary": "#006781", background: "#0e1417", "primary-fixed-dim": "#5bd4ff", "on-primary": "#003545", "on-secondary": "#003545", tertiary: "#ffb877", "primary-fixed": "#baeaff", "surface-container-highest": "#303639", "on-secondary-fixed": "#001f29", "on-primary-fixed": "#001f29", "on-tertiary-fixed-variant": "#6c3a00", "surface-container-low": "#171c1f", "outline-variant": "#3d494e", primary: "#5bd4ff", "surface-tint": "#5bd4ff", "inverse-surface": "#dee3e7", "on-primary-fixed-variant": "#004d62", "on-secondary-container": "#90bccf", surface: "#0e1417", "on-primary-container": "#004456", "secondary-container": "#1e4c5d", "primary-container": "#02b7e4", "tertiary-container": "#ef9334", "tertiary-fixed-dim": "#ffb877", "secondary-fixed-dim": "#a1cde1", "surface-container-high": "#252b2e", "inverse-on-surface": "#2b3134", "on-tertiary-container": "#5f3300"}, fontFamily: {headline: ["Assistant"], body: ["sans-serif"], label: ["Inter"], display: "Assistant"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}}}};</script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+      .font-headline {
+        font-family: 'Assistant', sans-serif;
+        font-weight: 700;
+      }
+      .glass-effect {
+        background: rgba(30, 32, 33, 0.7);
+        backdrop-filter: blur(24px);
+      }
+      body {
+        background-color: #0c0e0f;
+        color: #e2e2e3;
+        font-family: sans-serif;
+        scroll-behavior: smooth;
+      }
+      #mobile-menu {
+        transition: transform 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="overflow-x-hidden">
+<!-- Top Navigation Anchor -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-8 py-6 max-w-none bg-[#121415] dark:bg-[#0c0e0f] transition-all duration-300">
+<div class="flex items-center gap-4">
+<button onclick="toggleMenu()" class="flex items-center justify-center w-10 h-10 hover:bg-[#1a1c1d] transition-colors rounded-sm" aria-label="תפריט">
+<span id="menu-icon" class="material-symbols-outlined text-[#087fa3]">menu</span>
+</button>
+</div>
+<div class="text-2xl font-bold tracking-tighter text-[#e2e2e3] uppercase font-headline" style="">דר נאור</div>
+<div class="hidden md:flex gap-8">
+<a href="#hero" class="text-[#79d1f9] border-b-2 border-[#087fa3] pb-1 font-label text-sm tracking-widest cursor-pointer no-underline">HOME</a>
+<a href="#transformations" class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-label text-sm tracking-widest cursor-pointer no-underline">PROGRAMS</a>
+<a href="#testimonials" class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-label text-sm tracking-widest cursor-pointer no-underline">JOURNAL</a>
+</div>
+<a href="#contact" class="bg-[#087fa3] text-[#fefeff] px-6 py-2 text-xs font-label tracking-widest uppercase hover:bg-[#282a2b] transition-all duration-300 no-underline">לשיחת התאמה</a>
+</nav>
+
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-0 z-40 bg-[#0c0e0f] flex flex-col justify-center translate-x-full">
+  <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" style="background: linear-gradient(135deg, #087fa3 0%, transparent 60%);"></div>
+  <div class="relative px-10 md:px-20 w-full">
+    <a href="#hero" onclick="closeMenu()" class="flex items-end gap-6 py-6 border-b border-[#1a1c1d] group cursor-pointer no-underline">
+      <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">01</span>
+      <span class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">ראשי</span>
+    </a>
+    <a href="#transformations" onclick="closeMenu()" class="flex items-end gap-6 py-6 border-b border-[#1a1c1d] group cursor-pointer no-underline">
+      <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">02</span>
+      <span class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">טרנספורמציות</span>
+    </a>
+    <a href="#about" onclick="closeMenu()" class="flex items-end gap-6 py-6 border-b border-[#1a1c1d] group cursor-pointer no-underline">
+      <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">03</span>
+      <span class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">אודותי</span>
+    </a>
+    <a href="#testimonials" onclick="closeMenu()" class="flex items-end gap-6 py-6 border-b border-[#1a1c1d] group cursor-pointer no-underline">
+      <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">04</span>
+      <span class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">עדויות</span>
+    </a>
+    <a href="#app" onclick="closeMenu()" class="flex items-end gap-6 py-6 border-b border-[#1a1c1d] group cursor-pointer no-underline">
+      <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">05</span>
+      <span class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">אפליקציה</span>
+    </a>
+    <a href="#contact" onclick="closeMenu()" class="flex items-end gap-6 py-6 group cursor-pointer no-underline">
+      <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">06</span>
+      <span class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">צור קשר</span>
+    </a>
+  </div>
+</div>
+<!-- Hero Section -->
+<section id="hero" class="relative h-screen w-full flex flex-col justify-end items-center text-center px-6 pb-20 overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-gradient-to-t from-[#0c0e0f] via-[#0c0e0f]/50 to-transparent z-10"></div>
+<!-- Extra bottom shadow on mobile for stronger blend -->
+<div class="block md:hidden absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0c0e0f] to-transparent z-10"></div>
+<!-- Mobile image -->
+<img class="block md:hidden w-full h-full object-cover object-center grayscale opacity-70" src="./images/Screenshot 2026-03-30 at 1.07.35.png" alt="דר נאור אימון">
+<!-- Desktop image -->
+<img class="hidden md:block w-full h-full object-cover grayscale opacity-60" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA04IEEMHFabFjQCRwK2Zq7_YNSNiE1AIQo-oyOiuKLXx0iFFviirdhk4XZBmddF2QJikTwk2RkQq8Ht4M0k04EOJBplms7i-sAfbmwj5a-I6DQyBbvWEH4QIZ6PPROGpphAmC7zwrPRcQsVjJ2fFTgwxz88nerzrUp_lt3gVnXuvrYOL2boo_camzhe_TNUxzno0cLMRH-qYb5gpB2yfLzlQguZN2khQPMv-TWe1eQGHv1EJUJ1CnIo4eZq2XN-8m25KsKdLI8gy0" alt="">
+</div>
+<div class="relative z-20 space-y-8 max-w-2xl">
+<h1 class="text-5xl md:text-7xl font-light tracking-tight text-[#e2e2e3] leading-tight font-headline" style=""><span class="italic text-[#087fa3]" style=""><font color="#e2e2e3"><span style="font-style: normal;">דר נאור<br></span></font>חטובים לנצח</span></h1>
+<div class="flex flex-col md:flex-row gap-4 justify-center items-center pt-8">
+<button onclick="openVideoModal()" class="w-full md:w-auto bg-[#087fa3] text-[#fefeff] px-10 py-3 text-xl font-label tracking-widest uppercase flex items-center justify-center gap-2 active:scale-95 duration-200 rounded-xl">
+                    הכירו אותי
+                <span class="material-symbols-outlined text-4xl" data-icon="play_circle">play_circle</span>
+</button>
+<a href="#plan" class="w-full md:w-auto border border-[#3f484d] text-[#fefeff] px-10 py-3 text-xl font-label tracking-widest uppercase flex items-center justify-center gap-2 hover:bg-[#1a1c1d] active:scale-95 duration-200 rounded-xl no-underline">
+                     על התוכנית
+                    <span class="material-symbols-outlined text-4xl" data-icon="arrow_left_alt">arrow_left_alt</span>
+</a>
+</div>
+</div>
+</section>
+
+<!-- Video Modal -->
+<div id="video-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 hidden" onclick="closeVideoModal(event)">
+  <div class="relative w-full max-w-3xl mx-6">
+    <button onclick="closeVideoModal()" class="absolute -top-10 left-0 text-[#e2e2e3] hover:text-white font-label text-xs tracking-widest uppercase flex items-center gap-2">
+      <span class="material-symbols-outlined">close</span> סגור
+    </button>
+    <div class="relative aspect-video bg-[#1a1c1d] flex items-center justify-center">
+      <video id="hero-video" class="w-full h-full object-cover" controls>
+        <!-- Video source will be added here -->
+        <source src="" type="video/mp4">
+      </video>
+      <div id="video-placeholder" class="absolute inset-0 flex flex-col items-center justify-center gap-4">
+        <span class="material-symbols-outlined text-6xl text-[#087fa3]">play_circle</span>
+        <p class="font-label text-xs tracking-widest uppercase text-[#3f484d]">הוידאו יתווסף בקרוב</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Plan Section -->
+<section id="plan" class="py-32 px-6 md:px-20 bg-[#0c0e0f]">
+  <div class="max-w-3xl mx-auto space-y-10">
+    <div class="space-y-4">
+      <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] uppercase">The Program</span>
+      <h2 class="text-4xl font-light font-headline">על התוכנית</h2>
+    </div>
+    <div class="space-y-6 text-[#9abaca] text-lg font-body leading-relaxed">
+      <!-- Program description text will be added here -->
+      <p>תוכן התוכנית יתווסף כאן בקרוב.</p>
+    </div>
+  </div>
+</section>
+
+<!-- The Archive Grid (Before/After) -->
+<section id="transformations" class="py-32 px-6 md:px-20 bg-[#121415]">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-8">
+<div class="space-y-4">
+<span class="font-label text-xs tracking-[0.4em] text-[#087fa3] uppercase" style="">Case Studies</span>
+<h2 class="text-4xl font-light font-headline" style="">טרנספורמציות נבחרות</h2>
+</div>
+<p class="text-[#9abaca] max-w-md font-body leading-relaxed" style="">
+                    תיעוד של משמעת, התמדה ותוצאות. כל מקרה הוא עדות לשיטה שמשלבת מדע עם סגנון חיים מודרני.
+                </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1">
+<!-- Archive Card 1 -->
+<div class="group relative overflow-hidden bg-[#1a1c1d] aspect-[4/5]">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" data-alt="professional split screen showing fitness progress of a man with dramatic lighting and dark aesthetic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAq_6OvlthAehlqRPS5lnUCUwgBTXebvN68wRlg0gdOc_F8Pkcnx8MAsPOfhs36u7slyyg58AruDPYHeHNK22cWyJ_LNSViydSu_tPK-4aZIrGQDyEHWT8EwzXSbIvx5k0t9HDyZqxfnmzmQ3O-V1i4-kO1mZAwcWcj-2W3rXSLZrWy-1RxOLgezlUuR0HoisIq_3LaXdDIomyVEh2yswDBH5QWsPOq9KsGX5QCTyfQxBKbtgscgn2RsNNyyIpyYFMAWxQMZNfTItE" style="">
+<div class="absolute inset-0 bg-gradient-to-t from-[#0c0e0f] to-transparent opacity-60"></div>
+<div class="absolute bottom-8 right-8 text-right">
+<p class="text-[#087fa3] font-label text-xs tracking-widest uppercase mb-2" style="">12 Weeks</p>
+<h3 class="text-2xl font-headline italic" style="">השינוי של דניאל</h3>
+</div>
+</div>
+<!-- Archive Card 2 -->
+<div class="group relative overflow-hidden bg-[#1a1c1d] aspect-[4/5] md:translate-y-12">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" data-alt="side profile fitness transformation of a woman against a dark grey minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI9pcxaggn_KHf7pIVvLTCxp03erId3SQoTetoTdlEOgrO5xXYF8Rs1Y0jRrhZKnCZyTTGKSovf-2rkEBxdj9thUFEP0NQx0AAwIMZPkgVEgry1FE-XaUirQMGBwnaO6QabjfDjOcjjwkoNYi-yH-AQwx6R5FzCe1bIMMBlveWs81Yj1gJnPowbCm2x1q_obXB_B5choTfu-_GCkyKQ4lcL7X1WxE_5iJuwJLDYBz2RLGQVE8XZaL2yBMjdlsgpT0K0Q9nhCJ-Z2Q" style="">
+<div class="absolute inset-0 bg-gradient-to-t from-[#0c0e0f] to-transparent opacity-60"></div>
+<div class="absolute bottom-8 right-8 text-right">
+<p class="text-[#087fa3] font-label text-xs tracking-widest uppercase mb-2" style="">16 Weeks</p>
+<h3 class="text-2xl font-headline italic" style="">המסע של מיכל</h3>
+</div>
+</div>
+<!-- Archive Card 3 -->
+<div class="group relative overflow-hidden bg-[#1a1c1d] aspect-[4/5]">
+<img class="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-700" data-alt="muscular development transformation in high contrast black and white lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUW4NqZnG6cZE4E1h28Mvm81t6qaC3Tiv3I8Xkj8MdBYhsbgqYjqK33-IM7Ugld-zNk78h6MjwjtEw09kKVwx483Ua-rqyDGt_Gt9Y6GrPPn1hdbYJ9IMJQslqDz_VLM7GUipzWePI4ZUdQ3ABbBbjZkqi_IYxO6wOhyJWq1m8ltMRwzAvzkki1SVBT2HwGLnxYf2iUW0GAr3GPuT7nOXzs5fn2rmdCT9I7tG4jd7ruZjxXBfEl-I0iDOXJmZ2F-nA-19GkdqE58E" style="">
+<div class="absolute inset-0 bg-gradient-to-t from-[#0c0e0f] to-transparent opacity-60"></div>
+<div class="absolute bottom-8 right-8 text-right">
+<p class="text-[#087fa3] font-label text-xs tracking-widest uppercase mb-2" style="">24 Weeks</p>
+<h3 class="text-2xl font-headline italic" style="">החזון של יואב</h3>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Meet the Doctor (Editorial Section) -->
+<section id="about" class="py-32 px-6 md:px-20 bg-[#0c0e0f]">
+<div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-20">
+<div class="w-full lg:w-1/2 relative">
+<div class="absolute -top-10 -right-10 w-40 h-40 border border-[#087fa3]/20 z-0"></div>
+<img class="relative z-10 w-full aspect-[3/4] object-cover grayscale brightness-75" data-alt="sophisticated portrait of a professional coach in a dark tailored suit sitting in a library setting with warm lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAflA1jAuTQQl5VUnWOGaw7Rj1YVTJtO_KWyb95IVlhE3weZ7jSMesNDIzCcTHOzRl59ECOVCJmY5xrg1rmyVGZ3gsDJQI4jMjVgOTA6MdlJNr4O6nbHrrWzmGq35ISyrN4iv__VmZzcF1F1swtL8XAqW3N0IFJGNQItBo5dyhcL_A2lvJP68ClotqGygJ2Yj_bM7umuigRxYAgUoTpPktpj95Pf6hmPwR95rrG4zJdiiA6dfycLTHpWi9CqWgmEQ5h5crSutyad9s" style="">
+<div class="absolute -bottom-6 -left-6 bg-[#087fa3] p-8 hidden md:block z-20">
+<span class="material-symbols-outlined text-4xl text-white" data-icon="verified" style="">verified</span>
+</div>
+</div>
+<div class="w-full lg:w-1/2 space-y-8">
+<span class="font-label text-xs tracking-[0.4em] text-[#087fa3] uppercase" style="">Curator &amp; Founder</span>
+<h2 class="text-5xl font-light font-headline leading-tight" style="">המדע שמאחורי <br> השגרה השפויה</h2>
+<p class="text-[#9abaca] text-lg font-body leading-relaxed" style="">
+                    נעים להכיר, אני כאן כדי לנפץ את המיתוס שכושר דורש סבל. הגישה שלי משלבת ידע אקדמי מעמיק עם הבנה של אורח החיים המודרני הלחוץ. אנחנו לא בונים רק גוף, אנחנו אוצרים חיים.
+                </p>
+<div class="pt-6 space-y-4">
+<div class="flex items-center gap-4 group">
+<div class="w-12 h-[1px] bg-[#3f484d] group-hover:w-20 group-hover:bg-[#087fa3] transition-all duration-500"></div>
+<span class="font-label text-sm tracking-widest uppercase" style="">My Philosophy</span>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-12 h-[1px] bg-[#3f484d] group-hover:w-20 group-hover:bg-[#087fa3] transition-all duration-500"></div>
+<span class="font-label text-sm tracking-widest uppercase" style="">The Methodology</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Audio Testimonials (The Archive Records) -->
+<section id="testimonials" class="py-32 px-6 md:px-20 bg-[#121415]">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-20">
+<h2 class="text-4xl font-light font-headline mb-4" style="">עדויות מהשטח</h2>
+<p class="text-[#9abaca] font-label text-xs tracking-[0.2em] uppercase" style="">Audio Records</p>
+</div>
+<div class="space-y-4">
+<!-- Audio Card 1 -->
+<div class="flex items-center justify-between p-8 bg-[#1a1c1d] border-b border-transparent hover:border-[#087fa3]/30 transition-all duration-300">
+<div class="flex items-center gap-6">
+<button class="w-12 h-12 rounded-full border border-[#3f484d] flex items-center justify-center hover:bg-[#087fa3] hover:border-[#087fa3] transition-colors group" style="">
+<span class="material-symbols-outlined text-[#087fa3] group-hover:text-white" data-icon="play_arrow" style="">play_arrow</span>
+</button>
+<div>
+<h4 class="text-xl font-headline italic" style="">"זה פשוט עובד"</h4>
+<p class="text-xs font-label text-[#3f484d] tracking-widest uppercase" style="">Record #402 — Amit R.</p>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-1">
+<div class="w-1 h-4 bg-[#087fa3]/40"></div>
+<div class="w-1 h-8 bg-[#087fa3]"></div>
+<div class="w-1 h-6 bg-[#087fa3]/60"></div>
+<div class="w-1 h-10 bg-[#087fa3]"></div>
+<div class="w-1 h-4 bg-[#087fa3]/40"></div>
+</div>
+</div>
+<!-- Audio Card 2 -->
+<div class="flex items-center justify-between p-8 bg-[#1a1c1d] border-b border-transparent hover:border-[#087fa3]/30 transition-all duration-300">
+<div class="flex items-center gap-6">
+<button class="w-12 h-12 rounded-full border border-[#3f484d] flex items-center justify-center hover:bg-[#087fa3] hover:border-[#087fa3] transition-colors group" style="">
+<span class="material-symbols-outlined text-[#087fa3] group-hover:text-white" data-icon="play_arrow" style="">play_arrow</span>
+</button>
+<div>
+<h4 class="text-xl font-headline italic" style="">"שינה לי את התפיסה"</h4>
+<p class="text-xs font-label text-[#3f484d] tracking-widest uppercase" style="">Record #405 — Sarah L.</p>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-1">
+<div class="w-1 h-10 bg-[#087fa3]"></div>
+<div class="w-1 h-4 bg-[#087fa3]/40"></div>
+<div class="w-1 h-8 bg-[#087fa3]"></div>
+<div class="w-1 h-6 bg-[#087fa3]/60"></div>
+<div class="w-1 h-5 bg-[#087fa3]/40"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- App Download Section -->
+<section id="app" class="py-32 px-6 md:px-20 bg-[#0c0e0f] overflow-hidden">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center gap-20">
+<div class="w-full md:w-1/2 space-y-10 order-2 md:order-1">
+<h2 class="text-5xl font-light font-headline leading-tight" style="">הארכיון <br> תמיד איתך</h2>
+<p class="text-[#9abaca] text-lg font-body leading-relaxed max-w-md" style="">
+                    האפליקציה הבלעדית שלנו מאפשרת לך לנהל את האימונים, התזונה וההתקדמות שלך מכל מקום. יומן אימונים חכם ומעקב מדויק.
+                </p>
+<div class="flex gap-4 pt-4">
+<div class="bg-[#1a1c1d] px-8 py-4 flex items-center gap-4 cursor-pointer hover:bg-[#282a2b] transition-colors">
+<span class="material-symbols-outlined text-3xl text-[#087fa3]" data-icon="apple" style="">ios</span>
+<div class="text-right">
+<p class="text-[10px] font-label text-[#3f484d]" style="">Download on the</p>
+<p class="text-sm font-bold font-label" style="">App Store</p>
+</div>
+</div>
+<div class="bg-[#1a1c1d] px-8 py-4 flex items-center gap-4 cursor-pointer hover:bg-[#282a2b] transition-colors">
+<span class="material-symbols-outlined text-3xl text-[#087fa3]" data-icon="play_store" style="">play_store_installed</span>
+<div class="text-right">
+<p class="text-[10px] font-label text-[#3f484d]" style="">Get it on</p>
+<p class="text-sm font-bold font-label" style="">Google Play</p>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/2 order-1 md:order-2 flex justify-center">
+<div class="relative w-72 h-[550px] bg-[#1a1c1d] rounded-[3rem] border-[8px] border-[#333536] overflow-hidden shadow-2xl">
+<img class="w-full h-full object-cover" data-alt="mobile app interface showing minimalist workout tracking data and clean typography on a dark screen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3ruTlroPiLdgIZwqD4tzR_iCO-jI20algIJOVfT5pQgpOm5WvNf1wHCI33H-5-3dd7_I3skPeo_M9V6EOYHVI3hj39wMIBSuKkaN94M9WT0cDW91kLum_3hE_Raw2z7HtfMn9zzkLP-Q4K_vlBE2_-K_uuvAumYphMTcShZv0wUgs6Rz51dYOTJONpfbyWedfK1ErSetgJ86h-IpUtXvIH8j3U4r3coOyeyiif2pmLYKiuYZyYvNRm4So--p3Ipmhquw_BbV43cs" style="">
+</div>
+</div>
+</div>
+</section>
+<!-- Contact Form (Lead Gen) -->
+<section id="contact" class="py-32 px-6 md:px-20 bg-[#121415]">
+<div class="max-w-xl mx-auto">
+  <div class="bg-[#1a1c1d] border border-[#3f484d]/40 rounded-3xl p-10 md:p-14 space-y-8 text-right">
+
+    <!-- Top labels -->
+    <h2 class="text-4xl md:text-5xl font-headline text-[#5bd4ff] text-center leading-tight">
+      להישאר חטוב לנצח, זה אפשרי
+      כאן מגלים איך 
+    </h2>
+
+    <!-- Main headline -->
+     <div class="text-center space-y-2">
+      <p class="text-[#9abaca] text-sm font-body">שיחה אישית איתי, 20 דקות, בלי התחייבות</p>
+    </div>
+
+    <!-- Form -->
+    <form class="space-y-5">
+      <div class="space-y-2">
+        <label class="font-label text-sm text-[#e2e2e3] block">שם מלא</label>
+        <input class="w-full bg-[#252b2e] border border-[#3f484d] rounded-xl focus:border-[#087fa3] text-[#e2e2e3] py-4 px-4 transition-all duration-300 outline-none placeholder-[#3f484d]" type="text" placeholder="הכנס את שמך המלא">
+      </div>
+      <div class="space-y-2">
+        <label class="font-label text-sm text-[#e2e2e3] block">מספר טלפון</label>
+        <input class="w-full bg-[#252b2e] border border-[#3f484d] rounded-xl focus:border-[#087fa3] text-[#e2e2e3] py-4 px-4 transition-all duration-300 outline-none placeholder-[#3f484d]" type="tel" placeholder="050-1234567">
+      </div>
+      <div class="space-y-2">
+        <label class="font-label text-sm text-[#e2e2e3] block">מגדר</label>
+        <div class="relative">
+          <select class="w-full bg-[#252b2e] border border-[#3f484d] rounded-xl focus:border-[#087fa3] text-[#9abaca] py-4 px-4 transition-all duration-300 outline-none appearance-none cursor-pointer">
+            <option value="" disabled selected>בחר מגדר</option>
+            <option value="male">זכר</option>
+            <option value="female">נקבה</option>
+            <option value="other">אחר</option>
+          </select>
+          <span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-[#9abaca] pointer-events-none text-lg">expand_more</span>
+        </div>
+      </div>
+      <button class="w-full bg-[#087fa3] text-[#fefeff] py-5 text-base font-headline font-bold rounded-full hover:bg-[#0a9bc4] active:scale-95 transition-all duration-300 mt-2" type="submit">
+        יאללה, נבדוק התאמה
+      </button>
+    </form>
+
+  
+  </div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full flex flex-col items-center py-20 px-8 space-y-3 bg-[#0c0e0f]">
+
+<div class="pt-8 border-t border-[#3f484d]/20 w-full max-w-4xl text-center">
+  <div class="font-headline text-lg font-bold text-[#e2e2e3]" style="">דר נאור</div>
+
+<p class="font-label text-[10px] uppercase tracking-[0.2em] text-[#3f484d]" style="">©דר נאור- חטובים לנצח</p>
+
+</div>
+</footer>
+
+<script>
+  function openVideoModal() {
+    document.getElementById('video-modal').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeVideoModal(e) {
+    if (!e || e.target === document.getElementById('video-modal') || e.currentTarget.tagName === 'BUTTON') {
+      const modal = document.getElementById('video-modal');
+      const video = document.getElementById('hero-video');
+      modal.classList.add('hidden');
+      video.pause();
+      document.body.style.overflow = '';
+    }
+  }
+
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+    const isOpen = !menu.classList.contains('translate-x-full');
+    if (isOpen) {
+      menu.classList.add('translate-x-full');
+      icon.textContent = 'menu';
+      document.body.style.overflow = '';
+    } else {
+      menu.classList.remove('translate-x-full');
+      icon.textContent = 'close';
+      document.body.style.overflow = 'hidden';
+    }
+  }
+
+  function closeMenu() {
+    const menu = document.getElementById('mobile-menu');
+    const icon = document.getElementById('menu-icon');
+    menu.classList.add('translate-x-full');
+    icon.textContent = 'menu';
+    document.body.style.overflow = '';
+  }
+</script>
+</body></html>
