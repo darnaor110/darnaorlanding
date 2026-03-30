@@ -66,7 +66,7 @@
     /* 3D Carousel Styles */
     .carousel-3d-container {
       perspective: 2000px;
-      padding: 100px 0;
+      padding: 40px 0;
       overflow: hidden;
     }
 
@@ -212,17 +212,23 @@
         aria-label="תפריט">
         <span id="menu-icon" class="material-symbols-outlined text-[#087fa3]">menu</span>
       </button>
+      <div
+        class="text-2xl font-bold tracking-tighter text-[#e2e2e3] uppercase font-headline drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">
+        דר נאור</div>
     </div>
-    <div
-      class="text-2xl font-bold tracking-tighter text-[#e2e2e3] uppercase font-headline drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">
-      דר נאור</div>
-    <div class="hidden md:flex gap-8">
+    <div class="hidden md:flex items-center gap-6 lg:gap-8">
       <a href="#hero"
-        class="text-[#79d1f9] border-b-2 border-[#087fa3] pb-1 font-label text-sm tracking-widest cursor-pointer no-underline">HOME</a>
+        class="text-[#79d1f9] border-b-2 border-[#087fa3] pb-1 font-headline text-sm tracking-widest cursor-pointer no-underline font-bold">ראשי</a>
+      <a href="#plan"
+        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-sm tracking-widest cursor-pointer no-underline font-bold">התוכנית</a>
+      <a href="#about"
+        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-sm tracking-widest cursor-pointer no-underline font-bold">מי אני</a>
       <a href="#transformations"
-        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-label text-sm tracking-widest cursor-pointer no-underline">PROGRAMS</a>
-      <a href="#testimonials"
-        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-label text-sm tracking-widest cursor-pointer no-underline">JOURNAL</a>
+        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-sm tracking-widest cursor-pointer no-underline font-bold">תוצאות</a>
+      <a href="#trainees-carousel"
+        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-sm tracking-widest cursor-pointer no-underline font-bold">הנבחרת</a>
+      <a href="#app"
+        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-sm tracking-widest cursor-pointer no-underline font-bold">אפליקציה</a>
     </div>
     <a href="#contact"
       class="bg-[#087fa3] text-[#fefeff] px-6 py-2 text-xs font-label tracking-widest uppercase hover:bg-[#282a2b] transition-all duration-300 no-underline">לשיחת
@@ -233,42 +239,53 @@
   <div id="mobile-menu" class="fixed inset-0 z-40 bg-[#0c0e0f] flex flex-col justify-center translate-x-full">
     <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none"
       style="background: linear-gradient(135deg, #087fa3 0%, transparent 60%);"></div>
-    <div class="relative px-10 md:px-20 w-full">
+    <div class="relative px-10 md:px-20 w-full max-h-[80vh] overflow-y-auto py-10 scrollbar-hide">
       <a href="#hero" onclick="closeMenu()"
-        class="flex items-end gap-6 py-6 border-b border-[#1a1c1d] group cursor-pointer no-underline">
+        class="flex items-end gap-6 py-4 border-b border-[#1a1c1d] group cursor-pointer no-underline">
         <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">01</span>
         <span
           class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">ראשי</span>
       </a>
-      <a href="#transformations" onclick="closeMenu()"
-        class="flex items-end gap-6 py-6 border-b border-[#1a1c1d] group cursor-pointer no-underline">
+      <a href="#plan" onclick="closeMenu()"
+        class="flex items-end gap-6 py-4 border-b border-[#1a1c1d] group cursor-pointer no-underline">
         <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">02</span>
         <span
-          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">ממליצים</span>
+          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">על התוכנית</span>
       </a>
       <a href="#about" onclick="closeMenu()"
-        class="flex items-end gap-6 py-6 border-b border-[#1a1c1d] group cursor-pointer no-underline">
+        class="flex items-end gap-6 py-4 border-b border-[#1a1c1d] group cursor-pointer no-underline">
         <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">03</span>
         <span
-          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">עלי</span>
+          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">מי אני?</span>
       </a>
-      <a href="#testimonials" onclick="closeMenu()"
-        class="flex items-end gap-6 py-6 border-b border-[#1a1c1d] group cursor-pointer no-underline">
+      <a href="#transformations" onclick="closeMenu()"
+        class="flex items-end gap-6 py-4 border-b border-[#1a1c1d] group cursor-pointer no-underline">
         <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">04</span>
         <span
-          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">שינויים</span>
+          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">תוצאות</span>
+      </a>
+      <a href="#trainees-carousel" onclick="closeMenu()"
+        class="flex items-end gap-6 py-4 border-b border-[#1a1c1d] group cursor-pointer no-underline">
+        <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">05</span>
+        <span
+          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">הנבחרת</span>
       </a>
       <a href="#app" onclick="closeMenu()"
-        class="flex items-end gap-6 py-6 border-b border-[#1a1c1d] group cursor-pointer no-underline">
-        <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">05</span>
+        class="flex items-end gap-6 py-4 border-b border-[#1a1c1d] group cursor-pointer no-underline">
+        <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">06</span>
         <span
           class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">האפליקציה</span>
       </a>
-      <a href="#contact" onclick="closeMenu()" class="flex items-end gap-6 py-6 group cursor-pointer no-underline">
-        <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">06</span>
+      <a href="#testimonials" onclick="closeMenu()"
+        class="flex items-end gap-6 py-4 border-b border-[#1a1c1d] group cursor-pointer no-underline">
+        <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">07</span>
         <span
-          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">צור
-          קשר</span>
+          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">המלצות</span>
+      </a>
+      <a href="#contact" onclick="closeMenu()" class="flex items-end gap-6 py-4 group cursor-pointer no-underline">
+        <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">08</span>
+        <span
+          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">צור קשר</span>
       </a>
     </div>
   </div>
@@ -575,8 +592,8 @@
     </div>
   </div>
   <!-- 3D Photo Carousel Section -->
-  <section id="trainees-carousel" class="py-20 px-6 md:px-20 bg-[#121415] overflow-hidden">
-    <div class="max-w-7xl mx-auto mb-12">
+  <section id="trainees-carousel" class="py-10 px-6 md:px-20 bg-[#121415] overflow-hidden">
+    <div class="max-w-7xl mx-auto mb-6">
       <h2 class="text-5xl font-bold font-headline text-center drop-shadow-[0_0_15px_rgba(91,212,255,0.4)]">המתאמנים שכבר
         עשו את זה</h2>
     </div>
@@ -730,16 +747,15 @@
     </div>
   </section>
   <!-- Audio Testimonials (The Archive Records) -->
-  <section id="testimonials" class="py-12 px-6 md:px-20 bg-[#121415]">
+  <section id="testimonials" class="py-6 px-6 md:px-20 bg-[#121415]">
     <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-20">
-        <h2 class="text-4xl font-light font-headline mb-4" style="">עדויות מהשטח</h2>
-        <p class="text-[#9abaca] font-label text-xs tracking-[0.2em] uppercase" style="">Audio Records</p>
+      <div class="text-center mb-8">
+        <h2 class="text-4xl font-light font-headline mb-4" style="">מתאמנים מספרים</h2>
       </div>
       <div class="space-y-4">
         <!-- Audio Card 1 -->
         <div
-          class="flex items-center justify-between p-8 bg-[#1a1c1d] border-b border-transparent hover:border-[#087fa3]/30 transition-all duration-300">
+          class="flex items-center justify-between p-4 bg-[#1a1c1d] border-b border-transparent hover:border-[#087fa3]/30 transition-all duration-300">
           <div class="flex items-center gap-6">
             <button
               class="w-12 h-12 rounded-full border border-[#3f484d] flex items-center justify-center hover:bg-[#087fa3] hover:border-[#087fa3] transition-colors group"
@@ -762,7 +778,30 @@
         </div>
         <!-- Audio Card 2 -->
         <div
-          class="flex items-center justify-between p-8 bg-[#1a1c1d] border-b border-transparent hover:border-[#087fa3]/30 transition-all duration-300">
+          class="flex items-center justify-between p-4 bg-[#1a1c1d] border-b border-transparent hover:border-[#087fa3]/30 transition-all duration-300">
+          <div class="flex items-center gap-6">
+            <button
+              class="w-12 h-12 rounded-full border border-[#3f484d] flex items-center justify-center hover:bg-[#087fa3] hover:border-[#087fa3] transition-colors group"
+              style="">
+              <span class="material-symbols-outlined text-[#087fa3] group-hover:text-white" data-icon="play_arrow"
+                style="">play_arrow</span>
+            </button>
+            <div>
+              <h4 class="text-xl font-headline italic" style="">"שינה לי את התפיסה"</h4>
+              <p class="text-xs font-label text-[#3f484d] tracking-widest uppercase" style="">Record #405 — Sarah L.</p>
+            </div>
+          </div>
+          <div class="hidden md:flex items-center gap-1">
+            <div class="w-1 h-10 bg-[#087fa3]"></div>
+            <div class="w-1 h-4 bg-[#087fa3]/40"></div>
+            <div class="w-1 h-8 bg-[#087fa3]"></div>
+            <div class="w-1 h-6 bg-[#087fa3]/60"></div>
+            <div class="w-1 h-5 bg-[#087fa3]/40"></div>
+          </div>
+        </div>
+        <!-- Audio Card 2 -->
+        <div
+          class="flex items-center justify-between p-4 bg-[#1a1c1d] border-b border-transparent hover:border-[#087fa3]/30 transition-all duration-300">
           <div class="flex items-center gap-6">
             <button
               class="w-12 h-12 rounded-full border border-[#3f484d] flex items-center justify-center hover:bg-[#087fa3] hover:border-[#087fa3] transition-colors group"
@@ -784,7 +823,6 @@
           </div>
         </div>
       </div>
-    </div>
   </section>
   <!-- Thank You Modal -->
   <div id="thank-you-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 hidden-modal"
