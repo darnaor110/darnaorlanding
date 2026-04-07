@@ -707,7 +707,7 @@
 
 
   <!-- Showcase Video Section -->
-  <section id="showcase-video" class="-mt-14 md:mt-10 pt-0 pb-0 px-4 md:px-10 bg-[#0c0e0f] relative overflow-hidden">
+  <section id="showcase-video" class="-mt-14 md:mt-10 pt-0 pb-0 px-4 md:px-10 bg-[#0c0e0f] relative z-10 overflow-hidden">
     <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
       <div class="video-showcase-container w-full max-w-[400px] aspect-[16/9]">
         <video class="w-full h-full object-cover" controls
@@ -776,8 +776,8 @@
   </div>
 
   <!-- Before/After Strip (Hero) -->
-  <section class="pt-6 pb-6 bg-[#0c0e0f]">
-    <div id="ba-gallery" class="flex flex-row gap-4 overflow-x-auto" style="cursor: grab; -webkit-overflow-scrolling: touch; scrollbar-width: none;">
+  <section class="pt-12 pb-6 bg-[#0c0e0f] overflow-hidden" id="ba-viewport" style="cursor: grab; touch-action: pan-y;">
+    <div id="ba-track" style="display: flex; gap: 16px; will-change: transform; user-select: none;">
       <div class="flex-shrink-0 w-[160px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
@@ -2055,50 +2055,98 @@
 
   <script>
     (function () {
-      var el = document.getElementById('ba-gallery');
-      if (!el) return;
+      var viewport = document.getElementById('ba-viewport');
+      var track    = document.getElementById('ba-track');
+      if (!viewport || !track) return;
 
-      el.style.msOverflowStyle = 'none';
-
-      // Clone cards to fill 5x so edges are far away
-      var originals = Array.from(el.children);
+      // Clone cards 4 more times so we have 5 identical groups
+      var originals = Array.from(track.children);
       for (var i = 0; i < 4; i++) {
-        originals.forEach(function (card) {
-          el.appendChild(card.cloneNode(true));
-        });
+        originals.forEach(function (c) { track.appendChild(c.cloneNode(true)); });
       }
 
-      // Start in the middle copy
-      var groupWidth = el.scrollWidth / 5;
-      el.scrollLeft = groupWidth * 2;
+      var GAP        = 16;
+      var groupWidth = 0; // measured after layout
+      var x          = 0; // current translateX (negative = moved left)
+      var vel        = 0;
+      var dragging   = false;
+      var startPointer = 0;
+      var startX     = 0;
+      var lastPointer = 0;
+      var lastTime   = 0;
+      var raf;
 
-      // Silently re-center when drifting toward either edge
-      el.addEventListener('scroll', function () {
-        var g = el.scrollWidth / 5;
-        if (el.scrollLeft < g) {
-          el.scrollLeft += g * 2;
-        } else if (el.scrollLeft > g * 4 - el.clientWidth) {
-          el.scrollLeft -= g * 2;
+      function measure() {
+        // width of one group = 8 cards + 7 gaps
+        groupWidth = originals.length * (originals[0].offsetWidth + GAP);
+        // start at the middle group (copy #3)
+        x = -groupWidth * 2;
+        apply();
+      }
+
+      function apply() {
+        // wrap seamlessly
+        if (x < -groupWidth * 3) x += groupWidth;
+        if (x > -groupWidth)     x -= groupWidth;
+        track.style.transform = 'translateX(' + x + 'px)';
+      }
+
+      function loop() {
+        if (!dragging) {
+          vel *= 0.93;          // friction
+          x += vel;
+          apply();
+          if (Math.abs(vel) > 0.2) raf = requestAnimationFrame(loop);
         }
-      }, { passive: true });
+      }
 
-      // Drag-to-scroll on desktop
-      var isDown = false, startX, startScroll;
-      el.addEventListener('mousedown', function (e) {
-        isDown = true;
-        el.style.cursor = 'grabbing';
-        startX = e.pageX;
-        startScroll = el.scrollLeft;
-      });
-      window.addEventListener('mouseup', function () {
-        isDown = false;
-        el.style.cursor = 'grab';
-      });
-      el.addEventListener('mousemove', function (e) {
-        if (!isDown) return;
-        e.preventDefault();
-        el.scrollLeft = startScroll - (e.pageX - startX);
-      });
+      function pointerStart(clientX) {
+        dragging = true;
+        cancelAnimationFrame(raf);
+        vel = 0;
+        startPointer = clientX;
+        startX       = x;
+        lastPointer  = clientX;
+        lastTime     = Date.now();
+        viewport.style.cursor = 'grabbing';
+      }
+
+      function pointerMove(clientX) {
+        if (!dragging) return;
+        var now = Date.now();
+        var dt  = now - lastTime || 1;
+        vel = (clientX - lastPointer) / dt * 16; // ~px per frame at 60fps
+        lastPointer = clientX;
+        lastTime    = now;
+        x = startX + (clientX - startPointer);
+        apply();
+      }
+
+      function pointerEnd() {
+        if (!dragging) return;
+        dragging = false;
+        viewport.style.cursor = 'grab';
+        raf = requestAnimationFrame(loop);
+      }
+
+      // Touch
+      viewport.addEventListener('touchstart', function (e) {
+        pointerStart(e.touches[0].clientX);
+      }, { passive: true });
+      viewport.addEventListener('touchmove', function (e) {
+        pointerMove(e.touches[0].clientX);
+      }, { passive: true });
+      viewport.addEventListener('touchend', pointerEnd);
+
+      // Mouse
+      viewport.addEventListener('mousedown', function (e) { pointerStart(e.clientX); });
+      window.addEventListener('mousemove',   function (e) { pointerMove(e.clientX); });
+      window.addEventListener('mouseup',     pointerEnd);
+
+      // Init after fonts/images settle
+      window.addEventListener('load', measure);
+      // Fallback
+      setTimeout(measure, 100);
     })();
   </script>
 </body>
