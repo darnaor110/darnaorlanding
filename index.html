@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" dir="rtl" lang="he">
+<html class="dark" dir="rtl" lang="he" style="overflow-x: hidden;">
 
 <head>
   <meta charset="utf-8">
@@ -189,15 +189,389 @@
         transform: rotateY(315deg) translateZ(300px);
       }
     }
-  </style>
-  <style>
-    body {
-      min-height: max(884px, 100dvh);
+
+    /* WhatsApp Floating Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 2rem;
+      left: 0;
+      background-color: #25D366;
+      color: #fff;
+      padding: 8px 12px 8px 20px;
+      border-radius: 0 40px 40px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      z-index: 9999;
+      box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-family: 'Assistant', sans-serif;
+      font-weight: 700;
+      transform: translateX(-10px);
+      direction: ltr !important;
+    }
+
+    .whatsapp-float:hover {
+      transform: translateX(0);
+      background-color: #22c35e;
+      box-shadow: 6px 6px 20px rgba(0, 0, 0, 0.4);
+      padding-left: 20px;
+    }
+
+    .whatsapp-icon {
+      width: 22px;
+      height: 22px;
+      fill: currentColor;
+    }
+
+    @media (max-width: 768px) {
+      .whatsapp-float {
+        bottom: 1.5rem;
+        padding: 6px 10px 6px 16px;
+      }
+
+      .whatsapp-float span {
+        font-size: 1rem;
+      }
+    }
+
+    /* Program Details Dropdown & Square Card Styles */
+    .animate-fade-in {
+      animation: fadeIn 0.5s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #3f484d;
+      border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #087fa3;
+    }
+
+    #program-dropdown-menu {
+      transform-origin: top;
+      animation: slideDown 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) forwards;
+    }
+
+    @keyframes slideDown {
+      from {
+        opacity: 0;
+        transform: scaleY(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: scaleY(1);
+      }
     }
   </style>
   <style>
     body {
       min-height: max(884px, 100dvh);
+      max-width: 100vw;
+    }
+
+    /* Hide scrollbar for tabs on mobile */
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Prevent tab buttons from shrinking on mobile */
+    .program-tab {
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    /* Map-Like Timeline Styles */
+    .timeline-container {
+      position: relative;
+      padding-top: 4rem;
+      padding-bottom: 4rem;
+    }
+
+    .timeline-path-svg {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Curved Timeline Styles */
+    .how-it-works-container {
+      position: relative;
+      width: 100%;
+      height: 550px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: visible;
+      margin-top: -1rem;
+    }
+
+    .orbital-path-svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 120%;
+      max-width: 1200px;
+      pointer-events: none;
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    .orbital-navigation {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -10%);
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+    }
+
+    .orbital-dot {
+      position: absolute;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #1a1c1d;
+      border: 1px solid rgba(8, 127, 163, 0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      color: #3f484d;
+      z-index: 25;
+    }
+
+    .orbital-dot.active {
+      background: #087fa3;
+      color: white;
+      border-color: #5bd4ff;
+      box-shadow: 0 0 20px rgba(8, 127, 163, 0.6);
+      transform: scale(1.3) !important;
+      z-index: 30;
+    }
+
+    .orbital-dot:hover {
+      border-color: #087fa3;
+      color: #5bd4ff;
+    }
+
+    .how-content-display {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      width: 100%;
+      max-width: 600px;
+      padding: 0 2rem;
+    }
+
+    .how-slide {
+      display: none;
+      animation: howFadeIn 0.6s ease-out forwards;
+    }
+
+    @keyframes howFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes howCircularIn {
+      0% {
+        opacity: 0;
+        transform: translate(-30px, 30px) scale(0.8) rotate(-5deg);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translate(0, 0) scale(1) rotate(0deg);
+      }
+    }
+
+    .how-slide.active {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      animation: howCircularIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .video-showcase-container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(8, 127, 163, 0.15);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 40px rgba(8, 127, 163, 0.08);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .video-showcase-container:hover {
+      border-color: rgba(91, 212, 255, 0.3);
+      box-shadow: 0 0 60px rgba(8, 127, 163, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .how-nav-arrow {
+      position: relative;
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      aspect-ratio: 1/1;
+      background: radial-gradient(circle at 30% 30%, rgba(91, 212, 255, 0.2), rgba(8, 127, 163, 0.1));
+      backdrop-filter: blur(15px);
+      border: 3px solid #087fa3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 40;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 0 0 2px rgba(8, 127, 163, 0.1), 0 0 30px rgba(8, 127, 163, 0.3);
+      color: #5bd4ff;
+    }
+
+    .how-nav-arrow:hover {
+      background: radial-gradient(circle at 30% 30%, rgba(91, 212, 255, 0.4), rgba(8, 127, 163, 0.2));
+      border-color: #5bd4ff;
+      box-shadow: 0 0 0 4px rgba(91, 212, 255, 0.2), 0 0 50px rgba(8, 127, 163, 0.6);
+      transform: scale(1.15) rotate(5deg);
+      color: white;
+    }
+
+    .how-nav-arrow.prev {
+      right: 5%;
+    }
+
+    .how-nav-arrow.next {
+      left: 5%;
+    }
+
+    @media (max-width: 767px) {
+      .how-it-works-container {
+        height: 500px;
+      }
+
+      .orbital-path-svg {
+        width: 160%;
+        transform: translate(-50%, 0);
+      }
+
+      .how-nav-arrow {
+        top: auto;
+        bottom: 0;
+        width: 48px;
+        height: 48px;
+      }
+
+      .how-nav-arrow.prev {
+        right: 25%;
+      }
+
+      .how-nav-arrow.next {
+        left: 25%;
+      }
+    }
+
+    /* Mobile text sizes for philosophy/faq content */
+    @media (max-width: 767px) {
+      body {
+        min-height: 100dvh;
+      }
+
+      #philosophy .text-lg {
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      #philosophy .text-xl {
+        font-size: 1rem;
+      }
+
+      .faq-item .text-lg {
+        font-size: 0.875rem;
+      }
+
+      .faq-answer .text-base,
+      .faq-answer p {
+        font-size: 0.8125rem;
+      }
+
+      .tab-panel .text-lg {
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      #how-it-works .text-xl {
+        font-size: 1.125rem;
+      }
+
+      #how-it-works p {
+        font-size: 0.9rem;
+      }
+
+      #about .text-lg {
+        font-size: 0.875rem;
+        line-height: 1.5;
+      }
+
+      #about .text-5xl {
+        font-size: 1.5rem;
+      }
+
+      /* Fix CTA buttons text */
+      .font-headline.text-2xl {
+        font-size: 1.25rem;
+      }
+
+      /* Fix section horizontal padding */
+      section {
+        overflow-x: hidden;
+      }
     }
   </style>
 </head>
@@ -205,38 +579,38 @@
 <body class="overflow-x-hidden">
   <!-- Top Navigation Anchor -->
   <nav
-    class="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-8 py-3 lg:py-4 max-w-none bg-[#121415] dark:bg-[#0c0e0f] transition-all duration-300">
-    <div class="flex items-center gap-4">
+    class="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-8 py-3 max-w-none bg-[#121415] dark:bg-[#0c0e0f] transition-all duration-300">
+    <div class="flex items-center gap-0.5">
       <button onclick="toggleMenu()"
-        class="flex items-center justify-center w-10 h-10 hover:bg-[#1a1c1d] transition-colors rounded-sm"
+        class="flex items-center justify-center w-8 h-8 hover:bg-[#1a1c1d] transition-colors rounded-sm"
         aria-label="תפריט">
         <span id="menu-icon" class="material-symbols-outlined text-[#087fa3]">menu</span>
       </button>
       <div
-        class="text-2xl font-bold tracking-tighter text-[#e2e2e3] uppercase font-headline drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">
-        דר נאור</div>
+        class="text-[1.55rem] font-black leading-none tracking-tighter text-[#e2e2e3] uppercase font-headline drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]">
+        דר נאור <span class="text-[#087fa3] ms-1.5"> חטובים לנצח</span></div>
     </div>
     <div class="hidden lg:flex items-center gap-2 xl:gap-4">
       <a href="#hero"
-        class="text-[#79d1f9] border-b-2 border-[#087fa3] pb-1 font-headline text-sm tracking-widest cursor-pointer no-underline font-bold">ראשי</a>
+        class="text-[#79d1f9] border-b-2 border-[#087fa3] pb-1 font-headline text-[15px] tracking-widest cursor-pointer no-underline font-bold">ראשי</a>
       <a href="#plan"
-        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-sm tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">התוכנית</a>
+        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-[15px] tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">התוכנית</a>
       <a href="#transformations"
-        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-sm tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">תוצאות</a>
+        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-[15px] tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">תוצאות</a>
       <a href="#about"
-        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-sm tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">מי אני</a>
+        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-[15px] tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">מי
+        אני</a>
       <a href="#trainees-carousel"
-        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-sm tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">הנבחרת</a>
+        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-[15px] tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">הנבחרת</a>
       <a href="#app"
-        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-sm tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">האפליקציה</a>
+        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-[15px] tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">האפליקציה</a>
       <a href="#contact"
-        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-sm tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">צור קשר</a>
+        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-[15px] tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">צור
+        קשר</a>
       <a href="#testimonials"
-        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-sm tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">מתאמנים מספרים</a>
+        class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-[15px] tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">מתאמנים
+        מספרים</a>
     </div>
-    <a href="#contact"
-      class="bg-[#087fa3] text-[#fefeff] px-6 py-2 text-xs font-label tracking-widest uppercase hover:bg-[#282a2b] transition-all duration-300 no-underline">לשיחת
-      התאמה</a>
   </nav>
 
   <!-- Mobile Menu Overlay -->
@@ -254,7 +628,8 @@
         class="flex items-end gap-6 py-4 border-b border-[#1a1c1d] group cursor-pointer no-underline">
         <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">02</span>
         <span
-          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">על התוכנית</span>
+          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">על
+          התוכנית</span>
       </a>
       <a href="#transformations" onclick="closeMenu()"
         class="flex items-end gap-6 py-4 border-b border-[#1a1c1d] group cursor-pointer no-underline">
@@ -266,7 +641,8 @@
         class="flex items-end gap-6 py-4 border-b border-[#1a1c1d] group cursor-pointer no-underline">
         <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">04</span>
         <span
-          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">מי אני?</span>
+          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">מי
+          אני?</span>
       </a>
       <a href="#trainees-carousel" onclick="closeMenu()"
         class="flex items-end gap-6 py-4 border-b border-[#1a1c1d] group cursor-pointer no-underline">
@@ -284,50 +660,87 @@
         class="flex items-end gap-6 py-4 border-b border-[#1a1c1d] group cursor-pointer no-underline">
         <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">07</span>
         <span
-          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">צור קשר</span>
+          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">צור
+          קשר</span>
       </a>
       <a href="#testimonials" onclick="closeMenu()" class="flex items-end gap-6 py-4 group cursor-pointer no-underline">
         <span class="font-label text-xs tracking-[0.4em] text-[#087fa3] mb-2 shrink-0">08</span>
         <span
-          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">מתאמנים מספרים</span>
+          class="text-4xl md:text-5xl font-headline text-[#e2e2e3] group-hover:text-[#087fa3] transition-colors duration-300 leading-none">מתאמנים
+          מספרים</span>
       </a>
     </div>
   </div>
-  <!-- Hero Section -->
+
   <section id="hero"
-    class="relative h-screen w-full flex flex-col justify-end items-center text-center px-6 pb-32 overflow-hidden">
+    class="relative min-h-[70dvh] h-auto md:h-screen w-full flex flex-col justify-end items-center text-center px-4 md:px-6 pb-32 md:pb-43 overflow-hidden">
     <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e0f] via-[#0c0e0f]/50 to-transparent z-10"></div>
-      <!-- Extra bottom shadow on mobile for stronger blend -->
+      <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e0f] via-[#0c0e0f]/20 to-transparent z-10"></div>
       <div
-        class="block md:hidden absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-[#0c0e0f] to-transparent z-10">
+        class="block md:hidden absolute bottom-0 left-0 right-0 h-[70%] bg-gradient-to-t from-[#0c0e0f] via-[#0c0e0f]/80 to-transparent z-10">
       </div>
-      <!-- Mobile image -->
-      <img class="block md:hidden w-full h-full object-cover object-center grayscale opacity-70"
+      <img class="block md:hidden w-full h-full object-cover grayscale opacity-75 scale-96 origin-bottom"
+        style="object-position: center 100%;" src="./images/Screenshot 2026-03-30 at 1.07.35.png" alt="דר נאור אימון">
+      <img class="hidden md:block w-full h-full object-cover grayscale opacity-60" style="object-position: center 40%;"
         src="./images/Screenshot 2026-03-30 at 1.07.35.png" alt="דר נאור אימון">
-      <!-- Desktop image -->
-      <img class="hidden md:block w-full h-full object-cover grayscale opacity-60"
-        style="object-position: center calc(50% - 20px);" src="./images/Screenshot 2026-03-30 at 1.07.35.png"
-        alt="דר נאור אימון">
     </div>
-    <div class="relative z-20 space-y-3 max-w-2xl">
-      <h1 class="text-7xl md:text-8xl font-light tracking-tight text-[#e2e2e3] leading-none font-headline">
-        <span class="font-bold drop-shadow-[0_0_12px_rgba(255,255,255,0.3)]">דר נאור</span><br>
-        <span class="text-[#087fa3] drop-shadow-[0_0_15px_rgba(8,127,163,0.5)]">חטובים לנצח</span>
-      </h1>
-      <div class="flex flex-col md:flex-row gap-2 justify-center items-center pt-2">
-        <button onclick="openVideoModal()"
-          class="w-full md:w-auto bg-[#087fa3] text-[#fefeff] px-10 py-3 text-xl font-label tracking-widest uppercase flex items-center justify-center gap-2 active:scale-95 duration-200 rounded-xl">
-          הכירו אותי
-          <span class="material-symbols-outlined text-4xl" data-icon="play_circle">play_circle</span>
-        </button>
-        <a href="#plan"
-          class="w-full md:w-auto border border-[#3f484d] text-[#fefeff] px-10 py-3 text-xl font-label tracking-widest uppercase flex items-center justify-center gap-2 hover:bg-[#1a1c1d] active:scale-95 duration-200 rounded-xl no-underline">
-          על התוכנית
-          <span class="material-symbols-outlined text-4xl" data-icon="arrow_left_alt">arrow_left_alt</span>
-        </a>
+    <div class="relative z-20 space-y-1 md:space-y-2 max-w-6xl px-2 flex flex-col items-center">
+      <p class="text-lg md:text-4xl text-[#c8d8e0] font-body font-bold leading-tight max-w-none mx-auto">
+        אתם נותנים הכל באימונים ועכשיו הגיע הזמן<br />לשיטה מדוייקת שתעשה אתכם חטובים לנצח
+      </p>
+      <!-- Mobile Only Section Hidden for Clean Hero Look -->
+    </div>
+  </section>
+
+
+
+  <!-- Showcase Video Section -->
+  <section id="showcase-video" class="-mt-24 pt-0 pb-40 px-4 md:px-10 bg-[#0c0e0f] relative overflow-hidden">
+    <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
+      <div class="video-showcase-container w-full max-w-[400px] aspect-[16/9]">
+        <video class="w-full h-full object-cover" controls
+          poster="https://lh3.googleusercontent.com/aida-public/AB6AXuAflA1jAuTQQl5VUnWOGaw7Rj1YVTJtO_KWyb95IVlhE3weZ7jSMesNDIzCcTHOzRl59ECOVCJmY5xrg1rmyVGZ3gsDJQI4jMjVgOTA6MdlJNr4O6nbHrrWzmGq35ISyrN4iv__VmZzcF1F1swtL8XAqW3N0IFJGNQItBo5dyhcL_A2lvJP68ClotqGygJ2Yj_bM7umuigRxYAgUoTpPktpj95Pf6hmPwR95rrG4zJdiiA6dfycLTHpWi9CqWgmEQ5h5crSutyad9s">
+          <source src="" type="video/mp4">
+        </video>
+        <div
+          class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/40 group pointer-events-none">
+          <span
+            class="material-symbols-outlined text-7xl text-[#087fa3]/80 group-hover:text-[#5bd4ff] transition-colors">play_circle</span>
+          <p class="font-label text-sm tracking-[0.2em] uppercase text-[#9abaca] px-4">לחצו לצפייה בסרטון</p>
+        </div>
       </div>
     </div>
+  </section>
+
+  <!-- Desktop Vertical Video & CTA Section (Hidden on Mobile) -->
+  <section id="hero-extra-content"
+    class="hidden md:flex py-16 px-6 bg-[#0c0e0f] flex-col items-center gap-12 border-t border-[#1a1c1d]">
+    <!-- Vertical Video Place (Desktop version remains identical) -->
+    <div class="w-full max-w-[320px] aspect-[9/16] relative group">
+      <div
+        class="absolute inset-0 bg-gradient-to-br from-[#087fa3]/30 to-[#000]/50 rounded-3xl border border-[#087fa3]/30 shadow-[0_0_30px_rgba(8,127,163,0.2)] backdrop-blur-sm overflow-hidden flex items-center justify-center">
+        <div class="flex flex-col items-center gap-4 z-10 text-center px-4">
+          <div
+            class="w-20 h-20 rounded-full bg-[#087fa3]/20 border border-[#087fa3]/50 flex items-center justify-center group-hover:bg-[#087fa3]/30 group-hover:scale-110 transition-all duration-500 cursor-pointer shadow-[0_0_20px_rgba(8,127,163,0.3)]">
+            <span class="material-symbols-outlined text-4xl text-[#5bd4ff]">play_arrow</span>
+          </div>
+          <p class="text-[#5bd4ff] font-headline font-bold text-lg md:text-xl tracking-wide drop-shadow-lg">השיטה שלי
+            ב-60 שניות</p>
+        </div>
+        <div
+          class="absolute inset-0 opacity-20 pointer-events-none bg-[conic-gradient(from_0deg,#087fa3,transparent_60deg,#087fa3,transparent_120deg,#087fa3)] animate-[spin_10s_linear_infinite]">
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact Button (Desktop) -->
+    <a href="#contact"
+      class="inline-flex items-center gap-4 bg-gradient-to-r from-[#087fa3] to-[#006781] text-white px-12 md:px-16 py-4 md:py-5 rounded-full shadow-[0_0_20px_rgba(8,127,163,0.4)] hover:shadow-[0_0_35px_rgba(8,127,163,0.6)] hover:scale-105 active:scale-95 transition-all duration-300 no-underline group text-center">
+      <span class="font-headline font-black text-xl md:text-3xl leading-none uppercase tracking-tight">לחצו כאן — רוצה
+        להצטרף</span>
+      <span
+        class="material-symbols-outlined text-2xl md:text-3xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+    </a>
   </section>
 
   <!-- Video Modal -->
@@ -340,7 +753,6 @@
       </button>
       <div class="relative aspect-video bg-[#1a1c1d] flex items-center justify-center">
         <video id="hero-video" class="w-full h-full object-cover" controls>
-          <!-- Video source will be added here -->
           <source src="" type="video/mp4">
         </video>
         <div id="video-placeholder" class="absolute inset-0 flex flex-col items-center justify-center gap-4">
@@ -351,39 +763,102 @@
     </div>
   </div>
 
-  <!-- Plan Section -->
-  <section id="plan" class="py-12 px-6 md:px-20 bg-[#0c0e0f]">
-    <div class="max-w-3xl mx-auto space-y-10">
-      <div class="space-y-4">
-        <h2 class="text-5xl font-bold font-headline drop-shadow-[0_0_15px_rgba(91,212,255,0.6)]">על התוכנית</h2>
-      </div>
-      <div class="space-y-6 text-[#9abaca] text-lg font-body leading-relaxed">
-        <!-- Program description text will be added here -->
-        <p>תוכן התוכנית יתווסף כאן .</p>
+  <!-- Before/After Strip (Hero) -->
+  <section class="py-8 px-6 bg-[#0c0e0f]">
+    <div class="max-w-4xl mx-auto">
+      <div class="flex flex-row justify-center gap-4 md:gap-8 overflow-x-auto">
+        <div
+          class="flex-shrink-0 w-[160px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+          <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
+        </div>
+        <div
+          class="flex-shrink-0 w-[160px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+          <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
+        </div>
+        <div
+          class="flex-shrink-0 w-[160px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+          <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
+        </div>
       </div>
     </div>
   </section>
-  <!--  blue button that leads to contact  -->
 
-
+  <!-- CTA Button -->
   <div class="relative z-10 bg-[#0c0e0f]">
     <div class="flex flex-col items-center px-0 md:px-6 py-4 pb-8">
       <a href="#contact"
         class="w-full md:w-auto inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#0a9bc4] to-[#006781] text-white px-14 py-5 rounded-none md:rounded-full shadow-[0_0_15px_rgba(10,155,196,0.3)] hover:scale-[1.02] active:scale-95 transition-all duration-300 no-underline">
-        <span class="font-headline font-bold text-2xl leading-none drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">לחץ
-          לקביעת שיחת התאמה</span>
+        <span class="font-headline font-bold text-2xl leading-none drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">מעניין?
+          תביא פרטים</span>
       </a>
       <p class="mt-5 text-[#e2e2e3] text-base font-label tracking-wide opacity-90 font-bold text-center">
         שיחה חינם • ללא התחייבות
       </p>
     </div>
   </div>
+
+  <!-- Story Intro — After Fold -->
+  <section id="story-intro" class="py-12 md:py-16 px-4 md:px-20 bg-[#121415]">
+    <div class="max-w-4xl mx-auto space-y-8 md:space-y-10">
+      <h2 class="text-2xl md:text-5xl font-bold font-headline text-center drop-shadow-[0_0_15px_rgba(91,212,255,0.4)]">
+        נעים להכיר — דר נאור</h2>
+      <p class="text-base md:text-xl text-[#c8d8e0] font-body leading-relaxed text-center max-w-3xl mx-auto">
+        אני יודע איך זה מרגיש, גם אני הייתי שם. בכמה חודשים השמנתי פתאום 20 ק"ג. עם יותר מידי כוח רצון ומאמץ ירדתי הכל.
+        מאז עליתי את ה-20 האלו ויותר, פשוט בשריר.
+      </p>
+      <!-- 3 Photos: Skinny / Fat / Now -->
+      <div class="flex flex-row justify-center items-end gap-3 md:gap-8 overflow-x-auto">
+        <div class="flex flex-col items-center gap-2">
+          <div
+            class="w-[140px] md:w-[180px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+            <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">רזה — י"א</p>
+          </div>
+          <span class="text-xs text-[#3f484d] font-label">לפני</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <div
+            class="w-[140px] md:w-[180px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+            <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">שמן — י"ב</p>
+          </div>
+          <span class="text-xs text-[#3f484d] font-label">+20 ק"ג</span>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+          <div
+            class="w-[180px] md:w-[240px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#087fa3]/40 flex items-center justify-center shadow-[0_0_20px_rgba(8,127,163,0.2)]">
+            <p class="font-label text-[10px] tracking-widest uppercase text-[#087fa3]">עכשיו</p>
+          </div>
+          <span class="text-xs text-[#087fa3] font-label font-bold">+20 ק"ג שריר</span>
+        </div>
+      </div>
+      <div
+        class="space-y-4 text-base md:text-lg text-[#9abaca] font-body leading-relaxed text-center max-w-3xl mx-auto">
+        <p>
+          ברור שתמיד אפשר לעבוד יותר קשה. לאכול פחות, להתאמן יותר ובסוף יש שינוי. אבל זה מתסכל וקשה וחבל. מה שלי לקח 3-4
+          שנים, למתאמנים שלי לוקח היום חודשים בודדים — כי לאורך השנים למדתי איך עושים את זה נכון. זה נופל על הפרטים
+          הקטנים שאנחנו פשוט לא מודעים אליהם..
+        </p>
+        <a href="#testimonials"
+          class="inline-flex items-center gap-2 text-[#5bd4ff] font-headline font-bold hover:underline no-underline text-lg">
+          <span class="material-symbols-outlined">arrow_back</span>
+          הם יעידו
+        </a>
+      </div>
+      <div
+        class="space-y-4 text-base md:text-lg text-[#c8d8e0] font-body leading-relaxed text-center max-w-3xl mx-auto">
+        <p>
+          <strong class="text-[#e2e2e3]">המטרה שלי פשוטה</strong> — לחסוך לכם זמן, תסכול, וסבל. למה שכולם יגיעו לגוף שהם
+          רוצים ואתם לא? להיות חטובים לנצח זאת גישה, שכבר לימדתי בהצלחה מאות אנשים, ועכשיו, אם תרצו (ואתם מתאימים) —
+          תורכם.
+        </p>
+      </div>
+    </div>
+  </section>
   <!-- Transformations Video Carousel -->
   <section id="transformations" class="pt-8 pb-12 px-6 md:px-20 bg-[#121415] overflow-hidden">
     <div class="max-w-7xl mx-auto">
       <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-8">
         <div class="space-y-4 text-right w-full" dir="rtl">
-          <h2 class="text-4xl font-bold font-headline text-center md:text-right">בחרו להיות חטובים לנצח</h2>
+          <h2 class="text-4xl font-bold font-headline text-center md:text-right">סרטוני המלצה</h2>
         </div>
       </div>
 
@@ -547,59 +1022,48 @@
 
     </div>
   </section>
-  <!-- Meet the Doctor (Editorial Section) -->
-  <section id="about" class="py-12 px-6 md:px-20 bg-[#0c0e0f]">
-    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-20">
-      <div class="w-full lg:w-1/2 relative">
-        <h2
-          class="text-5xl font-bold font-headline leading-tight drop-shadow-[0_0_15px_rgba(91,212,255,0.4)] mb-10 text-center lg:text-right">
-          בואו נכיר</h2>
-        <div class="absolute -top-10 -right-10 w-40 h-40 border border-[#087fa3]/20 z-0"></div>
-        <img class="relative z-10 w-full aspect-[3/4] object-cover grayscale brightness-75"
-          data-alt="sophisticated portrait of a professional coach in a dark tailored suit sitting in a library setting with warm lighting"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAflA1jAuTQQl5VUnWOGaw7Rj1YVTJtO_KWyb95IVlhE3weZ7jSMesNDIzCcTHOzRl59ECOVCJmY5xrg1rmyVGZ3gsDJQI4jMjVgOTA6MdlJNr4O6nbHrrWzmGq35ISyrN4iv__VmZzcF1F1swtL8XAqW3N0IFJGNQItBo5dyhcL_A2lvJP68ClotqGygJ2Yj_bM7umuigRxYAgUoTpPktpj95Pf6hmPwR95rrG4zJdiiA6dfycLTHpWi9CqWgmEQ5h5crSutyad9s"
-          style="">
-        <div class="absolute -bottom-6 -left-6 bg-[#087fa3] p-8 hidden md:block z-20">
-          <span class="material-symbols-outlined text-4xl text-white" data-icon="verified" style="">verified</span>
+
+  <!-- Philosophy Section — הטעות -->
+  <section id="philosophy" class="py-16 px-6 md:px-20 bg-[#0c0e0f]">
+    <div class="max-w-4xl mx-auto space-y-10">
+      <h2
+        class="text-xl md:text-4xl font-bold font-headline text-center text-[#e2e2e3] drop-shadow-[0_0_15px_rgba(91,212,255,0.4)]">
+        הטעות ששאר המאמנים לא יספרו לכם עליה</h2>
+      <div
+        class="bg-[#1a1c1d] border border-[#3f484d]/40 rounded-2xl md:rounded-3xl p-5 md:p-12 space-y-4 md:space-y-6 text-right">
+        <p class="text-lg text-[#c8d8e0] font-body leading-relaxed">
+          רוב האנשים בטוחים שמה שחסר להם זה עוד משמעת עצמית או איזה תפריט קסם שיפתור להם את הבעיות. אבל האמת היא שאלו
+          פתרונות זמניים שמובילים, במקרה הטוב, לתוצאות זמניות. <strong class="text-[#e2e2e3]">הפתרון הוא אחר
+            לגמרי.</strong>
+        </p>
+        <p class="text-lg text-[#9abaca] font-body leading-relaxed">
+          את רוב המאמנים זה משרת… כי אתם בכל מקרה תפתחו בהם תלות. אני לא מאמין בזה.
+        </p>
+        <div class="border-r-4 border-[#087fa3] pr-6 py-2">
+          <p class="text-xl text-[#5bd4ff] font-headline font-bold">ב"חטובים לנצח" אני מאמין בלתת חכה, לא דג. 🎣</p>
+          <p class="text-sm text-[#9abaca] font-body mt-1">(סליחה על הקלישאה אבל אני רציני חחחח)</p>
         </div>
-      </div>
-      <!-- Mobile accent line -->
-      <div class="block lg:hidden w-20 h-[2px] mx-auto"
-        style="background: linear-gradient(90deg, transparent, #087fa3, transparent);"></div>
-      <div class="w-full lg:w-1/2 space-y-3">
-        <p class="text-[#e2e2e3] text-xl font-body leading-relaxed">
-          היי! קוראים לי דר נאור, בן 26.
-          </br>
-          סטודנט למדעי התזונה, מאמן כושר מוסמך, יועץ
-          לתזונת ספורט מטעם וינגייט ומפתח גוף חובב.
-          אני מלמד מתאמנים איך להגיע לגוף חטוב ומרשים
-          דרך בניית הרגלים חדשים שמתאימים להם - מה
-          שמאפשר להם להנות מתוצאות ארוכות טווח.
+        <p class="text-lg text-[#c8d8e0] font-body leading-relaxed">
+          לכל אחד מאיתנו תהליך ייחודי. גנטיקה, סדר יום, העדפות, שאיפות — לכן כל אחד צריך תוכנית שהיא <strong
+            class="text-[#5bd4ff]">'חליפה אישית'</strong> במיוחד עבורו. אחרת זה פשוט לא מצליח.
+        </p>
+        <p class="text-lg text-[#c8d8e0] font-body leading-relaxed">
+          בכנות, לתפור לכם אותה זה די קל, עשיתי מאות כאלו. העניין הוא שכמו בחיים, אחרי תקופה, בוודאות ידרשו שינויים. ואם
+          אתם לא תדעו איך לעשות אותם בעצמכם, אתם פשוט תישארו במקום (או תחזרו אחורה).
+        </p>
+        <p class="text-lg text-[#e2e2e3] font-body leading-relaxed font-bold">
+          החכמה היא להעזר בי בהתחלה, אבל ללמוד איך לאט לאט עושים את זה גם לבד, והופכים להיות המאמנים של עצמכם. ככה
+          הופכים להיות חטובים לנצח.
         </p>
       </div>
     </div>
-    </div>
   </section>
-  <!--  blue button that leads to contact  -->
-  <div class="relative z-10 bg-[#0c0e0f]">
-    <div class="flex flex-col items-center px-0 md:px-6 py-4 pb-8">
-      <a href="#contact"
-        class="w-full md:w-auto inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#0a9bc4] to-[#006781] text-white px-14 py-5 rounded-none md:rounded-full shadow-[0_0_15px_rgba(10,155,196,0.3)] hover:scale-[1.02] active:scale-95 transition-all duration-300 no-underline">
-        <span class="font-headline font-bold text-2xl leading-none drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">לשיחת
-          התאמה</span>
-        <span
-          class="material-symbols-outlined text-4xl leading-none drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">arrow_back</span>
-      </a>
-      <p class="mt-5 text-[#e2e2e3] text-base font-label tracking-wide opacity-90 font-bold text-center">
-        שיחה חינם • ללא התחייבות
-      </p>
-    </div>
-  </div>
-  <!-- 3D Photo Carousel Section -->
+
+  <!-- Before/After 3D Carousel — כמוהם -->
   <section id="trainees-carousel" class="py-10 px-6 md:px-20 bg-[#121415] overflow-hidden">
     <div class="max-w-7xl mx-auto mb-6">
-      <h2 class="text-5xl font-bold font-headline text-center drop-shadow-[0_0_15px_rgba(91,212,255,0.4)]">המתאמנים שכבר
-        עשו את זה</h2>
+      <h2 class="text-3xl md:text-5xl font-bold font-headline text-center drop-shadow-[0_0_15px_rgba(91,212,255,0.4)]">
+        כמוהם</h2>
     </div>
 
     <div class="carousel-3d-container">
@@ -659,6 +1123,353 @@
             src="/Users/yaire/.gemini/antigravity/brain/f2b3a5f0-e367-4b7b-9182-098f10f2a13f/fitness_transformation_8_v2_1774833027915.png"
             class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
             alt="Transformation 8">
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- How It Works — Curved Interactive Journey -->
+  <section id="how-it-works" class="py-24 px-6 md:px-20 bg-[#0c0e0f] overflow-hidden">
+    <div class="max-w-6xl mx-auto text-center mb-4">
+      <h2 class="text-3xl md:text-5xl font-bold font-headline drop-shadow-[0_0_15px_rgba(91,212,255,0.4)] mb-4">
+        מה תכלס תקבלו בתוכנית ? </h2>
+    </div>
+
+    <div class="how-it-works-container">
+      <!-- Curved Path Background -->
+      <svg class="orbital-path-svg" viewBox="0 0 1000 400" preserveAspectRatio="none">
+        <defs>
+          <linearGradient id="arc-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="#087fa3" stop-opacity="0" />
+            <stop offset="50%" stop-color="#087fa3" stop-opacity="0.8" />
+            <stop offset="100%" stop-color="#087fa3" stop-opacity="0" />
+          </linearGradient>
+        </defs>
+        <path id="orbital-curve" d="M100,350 Q500,50 900,350" fill="none" stroke="url(#arc-gradient)" stroke-width="4"
+          stroke-linecap="round" />
+
+        <text class="hidden md:block" fill="#5bd4ff" font-family="'Assistant', sans-serif" font-weight="900"
+          font-size="28" letter-spacing="2">
+          <textPath id="active-step-label" href="#orbital-curve" startOffset="50%" text-anchor="middle">
+          </textPath>
+        </text>
+
+        <!-- Previous/Next Step Labels (Curved) -->
+        <text class="hidden md:block" fill="#3f484d" font-family="'Assistant', sans-serif" font-weight="700"
+          font-size="18" opacity="0.6">
+          <textPath id="prev-step-label" href="#orbital-curve" startOffset="20%" text-anchor="middle">
+          </textPath>
+        </text>
+        <text class="hidden md:block" fill="#3f484d" font-family="'Assistant', sans-serif" font-weight="700"
+          font-size="18" opacity="0.6">
+          <textPath id="next-step-label" href="#orbital-curve" startOffset="80%" text-anchor="middle">
+          </textPath>
+        </text>
+      </svg>
+
+      <!-- Navigation Arrows at Top -->
+      <div class="absolute top-[420px] flex items-center justify-center gap-80 z-40 w-full px-10">
+        <button onclick="shiftHowStep(-1)" class="how-nav-arrow prev">
+          <span class="material-symbols-outlined text-3xl">arrow_forward</span>
+        </button>
+        <button onclick="shiftHowStep(1)" class="how-nav-arrow next">
+          <span class="material-symbols-outlined text-3xl">arrow_back</span>
+        </button>
+      </div>
+
+
+
+      <!-- Active Content Card -->
+      <div class="how-content-display">
+        <!-- Step 1 -->
+        <div class="how-slide active" data-how="0">
+          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">1</span>
+          <div
+            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
+            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">handshake</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">פגישת היכרות</h3>
+          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
+            פגישת היכרות פרונטלית מעמיקה. נבין יחד את כל המטרות שלך, החששות, המגבלות, כדי שהתוכנית תהיה הכי מותאמת
+            ונכונה עבורך שאפשר. בנוסף נעשה מדידת אחוזי שומן והיקפים כדי להבין מהי נקודת הפתיחה האמיתית שלנו.
+          </p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="how-slide" data-how="1">
+          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">2</span>
+          <div
+            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
+            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">restaurant</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">תוכנית תזונה מלאה</h3>
+          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
+            אני לוקח את מה שאתם אוהבים ורגילים, ועושה כמה שפחות שינויים, אבל בדיוק מספיק כדי שתראו תוצאות נדירות.
+          </p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="how-slide" data-how="2">
+          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">3</span>
+          <div
+            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
+            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">fitness_center</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">שגרת אימונים ייחודית</h3>
+          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
+            תגידו לי מה אתם רוצים לראות במראה, וכמה זמן יש לכם. אני אגרום לזה לקרות במכון.
+          </p>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="how-slide" data-how="3">
+          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">4</span>
+          <div
+            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
+            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">sports_martial_arts</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">אימון טכניקה מלא</h3>
+          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
+            ניפגש במכון ונוודא שהטכניקה שלך מושלמת, כדי שהתוצאות יהיו מושלמות. לא פחות.
+          </p>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="how-slide" data-how="4">
+          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">5</span>
+          <div
+            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
+            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">chat</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">זמינות מהירה בוואצפ</h3>
+          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
+            אני פה בשבילכם לכל שאלה :)
+          </p>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="how-slide" data-how="5">
+          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">6</span>
+          <div
+            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
+            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">videocam</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">פגישת עדכון בוידאו</h3>
+          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
+            אחת לשבועיים נוודא שאתם אכן בפועל מתקדמים, ואם משהו הכי קטן פחות עובד, נסדר אותו כדי שנגיע אל היעד שלנו
+            ביעילות.
+          </p>
+        </div>
+
+        <!-- Step 7 -->
+        <div class="how-slide" data-how="6">
+          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">7</span>
+          <div
+            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
+            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">phone_iphone</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">האפליקציה שלי</h3>
+          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
+            כדי שהכל יהיה מונגש בצורה הכי פשוטה שיש. תוכלו לעקוב אחרי האוכל והאימונים שלכם בצורה הכי קלה שיש, אפילו יש
+            לכם AI שלי לכל שאלה ובעיה.
+          </p>
+        </div>
+
+        <!-- Step 8 -->
+        <div class="how-slide" data-how="7">
+          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">8</span>
+          <div
+            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
+            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">school</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">חטובים לנצח - הקורס</h3>
+          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
+            הדרך שלי לוודא שאני המאמן האחרון שאי פעם תצטרכו. אתם תלמדו איך להתאים לעצמכם את האימונים, התזונה והשגרה כמו
+            מאמני עילית.
+          </p>
+        </div>
+
+        <!-- Step 9 -->
+        <div class="how-slide" data-how="8">
+          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">9</span>
+          <div
+            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
+            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">card_giftcard</span>
+          </div>
+          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">מעטפת בונוסים מלאה</h3>
+          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
+            קורס טכניקה, מאגר תוכנית האימון שלי, ספר המתכונים שלי לעצלנים, המדריך למזווה מנצח ועוד המון כלים שיעזרו לכם
+            להצליח.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <!-- CTA Button -->
+  <div class="relative z-10 bg-[#0c0e0f]">
+    <div class="flex flex-col items-center px-0 md:px-6 py-4 pb-12">
+      <a href="#contact"
+        class="w-full md:w-auto inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#0a9bc4] to-[#006781] text-white px-14 py-5 rounded-none md:rounded-full shadow-[0_0_15px_rgba(10,155,196,0.3)] hover:scale-[1.02] active:scale-95 transition-all duration-300 no-underline">
+        <span class="font-headline font-bold text-2xl leading-none drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]">מעניין?
+          תביא פרטים</span>
+      </a>
+      <p class="mt-5 text-[#e2e2e3] text-base font-label tracking-wide opacity-90 font-bold text-center">שיחה חינם • ללא
+        התחייבות</p>
+    </div>
+  </div>
+
+  <!-- About Section — Full Biography -->
+  <section id="about" class="py-16 px-6 md:px-20 bg-[#121415]">
+    <div class="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-10 lg:gap-20">
+      <div class="w-full lg:w-1/2 relative">
+        <h2
+          class="text-5xl font-bold font-headline leading-tight drop-shadow-[0_0_15px_rgba(91,212,255,0.4)] mb-10 text-center lg:text-right">
+          נעים להכיר — דר נאור</h2>
+        <div class="absolute -top-10 -right-10 w-40 h-40 border border-[#087fa3]/20 z-0"></div>
+        <img class="relative z-10 w-full aspect-[3/4] object-cover grayscale brightness-75"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAflA1jAuTQQl5VUnWOGaw7Rj1YVTJtO_KWyb95IVlhE3weZ7jSMesNDIzCcTHOzRl59ECOVCJmY5xrg1rmyVGZ3gsDJQI4jMjVgOTA6MdlJNr4O6nbHrrWzmGq35ISyrN4iv__VmZzcF1F1swtL8XAqW3N0IFJGNQItBo5dyhcL_A2lvJP68ClotqGygJ2Yj_bM7umuigRxYAgUoTpPktpj95Pf6hmPwR95rrG4zJdiiA6dfycLTHpWi9CqWgmEQ5h5crSutyad9s"
+          alt="דר נאור">
+        <div class="absolute -bottom-6 -left-6 bg-[#087fa3] p-8 hidden md:block z-20">
+          <span class="material-symbols-outlined text-4xl text-white">verified</span>
+        </div>
+      </div>
+      <div class="block lg:hidden w-20 h-[2px] mx-auto"
+        style="background: linear-gradient(90deg, transparent, #087fa3, transparent);"></div>
+      <div class="w-full lg:w-1/2 space-y-4">
+        <p class="text-[#e2e2e3] text-lg font-body leading-relaxed">אני חי את עולם הכושר והתזונה כבר 9 שנים. התחלתי כי
+          הייתי חייב, הגנטיקה שלי ׳נכנסה בי׳ מוקדם, כבר בגיל 17 השמנתי 20 קילו. ניסיתי לטפל בזה לבד, אבל תכלס די עמדתי
+          במקום — השינוי היה בינוני בקושי.</p>
+        <p class="text-[#9abaca] text-lg font-body leading-relaxed">לקח לי בערך 3 שנים לעשות את קפיצת המדרגה שרציתי.
+          וחבל.. היום מה שלקח לי 3 שנים לוקח למתאמנים שלי חודשים בודדים, נטו כי לא ידעתי באמת מה אני עושה ובמה להתמקד.
+        </p>
+        <p class="text-[#9abaca] text-lg font-body leading-relaxed">אחרי הצבא והמילואים וטיול באירופה — עשיתי קורס
+          מאמנים שסיימתי בהצטיינות. הציעו לי לעבוד במכון ובמשרד קטן לייעוצי תזונה. אחרי כמה חודשים הבנתי 2 דברים —</p>
+        <div class="border-r-4 border-[#087fa3] pr-6 py-2 space-y-1">
+          <p class="text-lg text-[#e2e2e3] font-headline font-bold">אני נהנה ברמות מלעזור לאנשים לשנות את החיים שלהם.
+          </p>
+          <p class="text-lg text-[#5bd4ff] font-headline font-bold">מסתבר שאני ממש טוב בזה.</p>
+        </div>
+        <p class="text-[#9abaca] text-lg font-body leading-relaxed">עשיתי שינוי כיוון. עשיתי את כל הקורסים שאפשר בארץ
+          ובעולם, יצאתי לדרך עצמאית ופתחתי את החברה שלי, והיום אני עושה תואר במדעי התזונה באוניברסיטה העברית.</p>
+        <p class="text-[#e2e2e3] text-lg font-body leading-relaxed font-bold">אני מאמין ויודע שכל אחד יכול לבנות גוף
+          בריא ומרשים לתמיד, וזה אפילו לא קשה כמו שרוב האנשים חושבים. המטרה שלי בחיים היא לעשות את זה כמה שיותר פשוט
+          ונגיש לכולם — ובשביל זה הקמתי את חטובים לנצח.</p>
+      </div>
+    </div>
+  </section>
+  <!-- FAQ Accordion -->
+  <section id="faq" class="py-16 px-6 md:px-20 bg-[#121415]">
+    <div class="max-w-3xl mx-auto">
+      <h2
+        class="text-2xl md:text-5xl font-bold font-headline text-center drop-shadow-[0_0_15px_rgba(91,212,255,0.4)] mb-6 md:mb-10">
+        שאלות ותשובות</h2>
+      <div class="space-y-3" id="faq-list">
+        <div class="faq-item bg-[#1a1c1d] border border-[#3f484d]/30 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-right">
+            <span class="text-lg font-headline font-bold text-[#e2e2e3]">מה קורה אם אני לא רואה תוצאות?</span>
+            <span class="material-symbols-outlined text-[#087fa3] faq-icon transition-transform duration-300">add</span>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-[#9abaca] font-body leading-relaxed">קודם כל כמעט שאין דבר כזה. כל מי שעושה מה שאני אומר לו
+              מצליח, כי כושר ותזונה זאת מתמטיקה די פשוטה אחרי שמבינים את זה. בשיחת ההתאמה אני מסביר מה נדרש, ומבין האם
+              אתם מתאימים. אני לא מכניס לתוכנית אנשים שלא מתאימים. במידה ואיכשהו קרה שנכנסתם, עשיתם מה שאני מבקש ולא
+              הצלחתם — אתם תקבלו ממני תוכנית נוספת במתנה עד שכן תצליחו בהתחייבות.</p>
+          </div>
+        </div>
+        <div class="faq-item bg-[#1a1c1d] border border-[#3f484d]/30 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-right">
+            <span class="text-lg font-headline font-bold text-[#e2e2e3]">האם צריך לאכול משעמם?</span>
+            <span class="material-symbols-outlined text-[#087fa3] faq-icon transition-transform duration-300">add</span>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-[#9abaca] font-body leading-relaxed">לא! צריך לאכול חכם. אני אלמד אתכם להכין אוכל טעים ובריא
+              בעצמכם, ואלמד אתכם לבחור נכון כדי שתוכלו לאכול אוכל שגם יעשה אתכם חטובים לנצח וגם תמשיכו להנות.</p>
+          </div>
+        </div>
+        <div class="faq-item bg-[#1a1c1d] border border-[#3f484d]/30 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-right">
+            <span class="text-lg font-headline font-bold text-[#e2e2e3]">כמה זמן הליווי דורש ממני ביומיום?</span>
+            <span class="material-symbols-outlined text-[#087fa3] faq-icon transition-transform duration-300">add</span>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-[#9abaca] font-body leading-relaxed">אימונים מתבצעים לפי הזמן שיש לכם, גם שעה פעמיים בשבוע זה
+              מספיק. אוכל כולנו מכינים/קונים גם ככה, רק נדרש לעשות את זה טוב. מעבר לזה, פגישה קצרה בוידאו פעם בשבועיים
+              וכמה דקות בשבוע לעדכונים. אני יודע להתאים את התוכנית כדי שלא משנה כמה זמן יש לך, זה יספיק.</p>
+          </div>
+        </div>
+        <div class="faq-item bg-[#1a1c1d] border border-[#3f484d]/30 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-right">
+            <span class="text-lg font-headline font-bold text-[#e2e2e3]">מה קורה כשהליווי נגמר?</span>
+            <span class="material-symbols-outlined text-[#087fa3] faq-icon transition-transform duration-300">add</span>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-[#9abaca] font-body leading-relaxed">יהיה לך את הכלים להמשיך להתקדם לבד או לשמר, מה שתבחרו.
+            </p>
+          </div>
+        </div>
+        <div class="faq-item bg-[#1a1c1d] border border-[#3f484d]/30 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-right">
+            <span class="text-lg font-headline font-bold text-[#e2e2e3]">מה קורה אחרי שאני אשאיר פרטים?</span>
+            <span class="material-symbols-outlined text-[#087fa3] faq-icon transition-transform duration-300">add</span>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-[#9abaca] font-body leading-relaxed">אני ארים טלפון לשיחת האבחון. היא כמובן ללא עלות או
+              התחייבות. באמת חשוב לי להבין האם אתם מתאימים לתוכנית או לא. אם כן אסביר לכם איך זה עובד, ואז תחליטו אם בא
+              לכם לצאת לדרך (אני לא לוחץ..).</p>
+          </div>
+        </div>
+        <div class="faq-item bg-[#1a1c1d] border border-[#3f484d]/30 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-right">
+            <span class="text-lg font-headline font-bold text-[#e2e2e3]">מהן העלויות?</span>
+            <span class="material-symbols-outlined text-[#087fa3] faq-icon transition-transform duration-300">add</span>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-[#9abaca] font-body leading-relaxed">תלוי מסלול ומטרות, אך מאוד שקלים בודדים בחודש, חשוב לי
+              שהתהליך יהיה נגיש לכל מי שרוצה ומתאים.</p>
+          </div>
+        </div>
+        <div class="faq-item bg-[#1a1c1d] border border-[#3f484d]/30 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-right">
+            <span class="text-lg font-headline font-bold text-[#e2e2e3]">אבל אני בעייתי באוכל!</span>
+            <span class="material-symbols-outlined text-[#087fa3] faq-icon transition-transform duration-300">add</span>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-[#9abaca] font-body leading-relaxed">גם אני נשמה, אישית אני בקושי אוכל פירות וירקות (שריטה
+              מהילדות). הכל פתיר.</p>
+          </div>
+        </div>
+        <div class="faq-item bg-[#1a1c1d] border border-[#3f484d]/30 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-right">
+            <span class="text-lg font-headline font-bold text-[#e2e2e3]">אני לא מתאמן כרגע במכון, מה עושים?</span>
+            <span class="material-symbols-outlined text-[#087fa3] faq-icon transition-transform duration-300">add</span>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-[#9abaca] font-body leading-relaxed">התוכנית אונליין לא מתאימה למי שעדיין לא מתאמן במכון
+              כושר, אבל בדיוק בשביל זה יש לי תוכנית פרונטלית. תשאירו פרטים ואסביר לכם איך זה עובד בשיחה.</p>
+          </div>
+        </div>
+        <div class="faq-item bg-[#1a1c1d] border border-[#3f484d]/30 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-right">
+            <span class="text-lg font-headline font-bold text-[#e2e2e3]">אני בעניין, איך מתקדמים?</span>
+            <span class="material-symbols-outlined text-[#087fa3] faq-icon transition-transform duration-300">add</span>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-[#9abaca] font-body leading-relaxed">תשאירו לי פרטים או תשלחו הודעה בוואצפ ואחזור אליכם ב-24
+              השעות הקרובות.</p>
+          </div>
+        </div>
+        <div class="faq-item bg-[#1a1c1d] border border-[#3f484d]/30 rounded-2xl overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full flex justify-between items-center p-5 text-right">
+            <span class="text-lg font-headline font-bold text-[#e2e2e3]">האם הליווי הוא איתך?</span>
+            <span class="material-symbols-outlined text-[#087fa3] faq-icon transition-transform duration-300">add</span>
+          </button>
+          <div class="faq-answer hidden px-5 pb-5">
+            <p class="text-[#9abaca] font-body leading-relaxed">כן כמובן, אני אישית מלווה אתכם, לא מישהו מטעמי.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -1053,7 +1864,125 @@
       modal.classList.add('hidden-modal');
       document.body.style.overflow = '';
     }
+
+    // ── Program Dropdown & Selection ──
+    function toggleProgramDropdown() {
+      const menu = document.getElementById('program-dropdown-menu');
+      const chevron = document.getElementById('dropdown-chevron');
+      const isHidden = menu.classList.contains('hidden');
+
+      menu.classList.toggle('hidden');
+      chevron.style.transform = isHidden ? 'rotate(180deg)' : 'rotate(0deg)';
+    }
+
+    function selectProgramOption(index, label, icon) {
+      // Update Button
+      document.getElementById('selected-label').textContent = label;
+      document.getElementById('selected-icon').textContent = icon;
+
+      // Update Active State in options
+      document.querySelectorAll('.program-option').forEach((opt, i) => {
+        if (i === index) {
+          opt.classList.add('text-[#5bd4ff]', 'bg-[#087fa3]/10');
+          opt.classList.remove('text-[#9abaca]');
+        } else {
+          opt.classList.remove('text-[#5bd4ff]', 'bg-[#087fa3]/10');
+          opt.classList.add('text-[#9abaca]');
+        }
+      });
+
+      // Update Panels
+      document.querySelectorAll('.tab-panel').forEach(panel => {
+        panel.classList.toggle('hidden', panel.dataset.tab !== String(index));
+      });
+
+      // Close Dropdown
+      toggleProgramDropdown();
+    }
+
+    // Close dropdown on click outside
+    window.addEventListener('click', (e) => {
+      const selector = document.getElementById('program-selector');
+      const menu = document.getElementById('program-dropdown-menu');
+      if (selector && !selector.contains(e.target) && !menu.classList.contains('hidden')) {
+        toggleProgramDropdown();
+      }
+    });
+
+    // ── FAQ Accordion ──
+    function toggleFaq(btn) {
+      const item = btn.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const icon = item.querySelector('.faq-icon');
+      const isOpen = !answer.classList.contains('hidden');
+      // Close all others
+      document.querySelectorAll('.faq-item').forEach(fi => {
+        fi.querySelector('.faq-answer').classList.add('hidden');
+        fi.querySelector('.faq-icon').textContent = 'add';
+        fi.querySelector('.faq-icon').style.transform = '';
+      });
+      if (!isOpen) {
+        answer.classList.remove('hidden');
+        icon.textContent = 'remove';
+        icon.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    // ── How It Works Interactive ──
+    let currentHowStep = 0;
+    const totalHowSteps = 9;
+
+    function goToHowStep(index) {
+      currentHowStep = index;
+      updateHowUI();
+    }
+
+    function shiftHowStep(dir) {
+      currentHowStep = (currentHowStep + dir + totalHowSteps) % totalHowSteps;
+      updateHowUI();
+    }
+
+    function updateHowUI() {
+      // Update Slides
+      document.querySelectorAll('.how-slide').forEach((slide) => {
+        slide.classList.toggle('active', parseInt(slide.getAttribute('data-how')) === currentHowStep);
+      });
+
+      // Update Curved Text Labels (Active, Prev, Next)
+      const total = 9;
+      const prevIdx = (currentHowStep - 1 + total) % total;
+      const nextIdx = (currentHowStep + 1 + total) % total;
+
+      const activeSlide = document.querySelector(`.how-slide[data-how="${currentHowStep}"]`);
+      const prevSlide = document.querySelector(`.how-slide[data-how="${prevIdx}"]`);
+      const nextSlide = document.querySelector(`.how-slide[data-how="${nextIdx}"]`);
+
+      if (activeSlide) {
+        document.getElementById('active-step-label').textContent = activeSlide.querySelector('h3').textContent;
+      }
+      if (prevSlide) {
+        document.getElementById('prev-step-label').textContent = prevSlide.querySelector('h3').textContent;
+      }
+      if (nextSlide) {
+        document.getElementById('next-step-label').textContent = nextSlide.querySelector('h3').textContent;
+      }
+
+      // Update Dots (if any remain)
+      document.querySelectorAll('.orbital-dot').forEach((dot) => {
+        dot.classList.toggle('active', parseInt(dot.getAttribute('data-how')) === currentHowStep);
+      });
+    }
   </script>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/972544960280?text=%D7%94%D7%99%D7%99%20%D7%93%D7%A8%2C%20%D7%90%D7%A0%D7%99%20%D7%A8%D7%95%D7%A6%D7%94%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A4%D7%A8%D7%98%D7%99%D7%9D%20%D7%A2%D7%9C%20%D7%94%D7%AA%D7%95%D7%9B%D7%A0%D7%99%D7%AA%21"
+    target="_blank" class="whatsapp-float">
+    <span class="font-headline font-bold text-base">אני רוצה להתחיל</span>
+    <svg class="whatsapp-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L0 24l6.335-1.662c1.72.94 3.659 1.437 5.63 1.438h.004c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+    </svg>
+  </a>
 </body>
 
 </html>
