@@ -683,23 +683,37 @@
     style="box-shadow: inset 0 0 120px rgba(0,0,0,0.7), inset 0 -60px 80px rgba(0,0,0,0.5);">
 
     <!-- Subtitle -->
-    <p class="text-base md:text-lg text-[#8fa8b5] font-body leading-snug max-w-sm md:max-w-xl mx-auto mb-5">
+    <p class="text-base md:text-lg text-[#8fa8b5] font-body leading-snug max-w-sm md:max-w-xl mx-auto mb-5 font-bold">
       למתאמנים שמשקיעים במכון בשביל גוף חטוב ובריא אבל נמאס להם מתוצאות בינוניות אן זמניות
     </p>
 
     <!-- Main Headline -->
     <h1 class="text-[1.45rem] md:text-3xl font-headline font-black text-[#e2e2e3] leading-tight max-w-sm md:max-w-2xl mx-auto mb-5 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"
-      style="-webkit-text-stroke: 0.3px rgba(91,212,255,0.35); text-shadow: 0 0 20px rgba(91,212,255,0.2), 0 0 40px rgba(8,127,163,0.15);">
+      style="-webkit-text-stroke: 0.1px rgba(91,212,255,0.2); text-shadow: 0 0 20px rgba(91,212,255,0.2), 0 0 40px rgba(8,127,163,0.15);">
       בשיטה שלי עזרתי ל 280+ מתאמנים<br />להיפטר מהבטן התחתונה לבנות גוף חטוב<br />שגרה בריאה ולהבין איך להצליח לבד<br />כדי שיהפכו לחטובים לנצח
     </h1>
 
     <!-- Fine print -->
-    <p class="text-xs text-[#5a6e78] font-body mb-1 max-w-xs md:max-w-md mx-auto">
-      גם אם אתם עסוקים ברמות X בלי ריצות X תפריטים מוזרים
-    </p>
-    <p class="text-xs text-[#5a6e78] font-body mb-7 max-w-xs md:max-w-md mx-auto">
-      גם אם הגנטיקה שלכם מאפנה וקשה לכם להתמיד
-    </p>
+    <div class="text-sm md:text-base font-body mb-7 max-w-xs md:max-w-md mx-auto flex flex-col gap-1 items-center" dir="rtl">
+      <div class="flex items-center gap-1.5">
+        <span class="text-green-400">✓</span>
+        <span class="text-[#5a6e78]">גם אם אתם עסוקים ברמות</span>
+      </div>
+      <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1.5">
+          <span class="text-red-400">✕</span>
+          <span class="text-[#5a6e78]">בלי ריצות</span>
+        </div>
+        <div class="flex items-center gap-1.5">
+          <span class="text-red-400">✕</span>
+          <span class="text-[#5a6e78]">תפריטים מוזרים</span>
+        </div>
+      </div>
+      <div class="flex items-center gap-1.5">
+        <span class="text-green-400">✓</span>
+        <span class="text-[#5a6e78]">גם אם הגנטיקה שלכם מעפנה וקשה לכם להתמיד</span>
+      </div>
+    </div>
 
     <!-- Video Player -->
     <div class="video-showcase-container w-full max-w-[480px] md:max-w-[480px] aspect-[16/9] relative cursor-pointer group" onclick="document.getElementById('video-modal').classList.remove('hidden')">
@@ -720,35 +734,39 @@
       <div id="hero-ba-viewport" class="overflow-hidden w-full" style="cursor: grab; touch-action: pan-y;">
         <div id="hero-ba-track" class="flex gap-3" style="will-change: transform; user-select: none;">
           <!-- Card 1 — real image -->
-          <div class="flex-shrink-0 w-[120px] md:w-[160px] aspect-[3/4] rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
             <img src="images/b1.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
           </div>
-          <!-- Cards 2–7 — placeholders -->
-          <div class="flex-shrink-0 w-[120px] md:w-[160px] aspect-[3/4] bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+          <!-- Card 2 — real image -->
+          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <img src="images/b2.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
+          </div>
+          <!-- Cards 3–8 — placeholders -->
+          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
             <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
             <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
-          <div class="flex-shrink-0 w-[120px] md:w-[160px] aspect-[3/4] bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
             <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
             <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
-          <div class="flex-shrink-0 w-[120px] md:w-[160px] aspect-[3/4] bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
             <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
             <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
-          <div class="flex-shrink-0 w-[120px] md:w-[160px] aspect-[3/4] bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
             <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
             <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
-          <div class="flex-shrink-0 w-[120px] md:w-[160px] aspect-[3/4] bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
             <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
             <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
-          <div class="flex-shrink-0 w-[120px] md:w-[160px] aspect-[3/4] bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
             <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
             <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
-          <div class="flex-shrink-0 w-[120px] md:w-[160px] aspect-[3/4] bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
             <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
             <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
