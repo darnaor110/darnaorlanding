@@ -679,50 +679,40 @@
   </div>
 
   <section id="hero"
-    class="relative h-[80dvh] md:min-h-[100dvh] md:h-screen w-full flex flex-col justify-center md:justify-end items-center text-center px-4 md:px-6 pb-0 md:pb-43 overflow-hidden">
-    <div class="absolute inset-0 z-0">
-      <div class="absolute inset-0 bg-gradient-to-t from-[#0c0e0f] via-[#0c0e0f]/20 to-transparent z-10"></div>
-      <div
-        class="block md:hidden absolute bottom-0 left-0 right-0 h-[70%] bg-gradient-to-t from-[#0c0e0f] via-[#0c0e0f]/80 to-transparent z-10">
-      </div>
-      <div class="block md:hidden absolute top-0 left-0 right-0 overflow-hidden" style="height: 80dvh;">
-        <img class="w-full h-full object-cover"
-          style="object-position: center -80px; transform: scale(1.5); transform-origin: center top;" src="./images/hero_new.jpg" alt="דר נאור אימון">
-        <div class="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-[#0c0e0f] via-[#0c0e0f]/80 to-transparent"></div>
-      </div>
-      <img class="hidden md:block w-full h-full object-cover" style="object-position: center 25%;"
-        src="./images/hero_new.jpg" alt="דר נאור אימון">
-    </div>
-    <div class="relative z-20 max-w-6xl px-2 flex flex-col items-center mt-52 md:mt-56">
-      <p class="text-lg md:text-4xl text-[#c8d8e0] font-body font-bold leading-tight max-w-none mx-auto">
-        למתאמנים שמשקיעים במכון בשביל גוף חטוב ובריא<br />אבל נמאס להם מתוצאות בינוניות או זמניות
-      </p>
-      <p class="text-base md:text-2xl text-[#c8d8e0] font-body leading-tight max-w-none mx-auto mt-6 md:mt-8">
-        בשיטה שלי עזרתי ל 280+ מתאמנים להיפטר מהבטן התחתונה<br />לבנות גוף חטוב, שגרה בריאה ולהבין איך להצליח לבד - כדי שיהפכו לחטובים לנצח
-      </p>
-      <!-- Mobile Only Section Hidden for Clean Hero Look -->
-    </div>
-  </section>
+    class="w-full flex flex-col items-center text-center px-5 md:px-10 pt-24 pb-8 bg-[#0d272f]">
 
+    <!-- Subtitle -->
+    <p class="text-base md:text-lg text-[#8fa8b5] font-body leading-snug max-w-sm md:max-w-xl mx-auto mb-5">
+      למתאמנים שמשקיעים במכון בשביל גוף חטוב ובריא אבל נמאס להם מתוצאות בינוניות אן זמניות
+    </p>
 
+    <!-- Main Headline -->
+    <h1 class="text-[1.75rem] md:text-4xl font-headline font-black text-[#e2e2e3] leading-tight max-w-sm md:max-w-2xl mx-auto mb-5">
+      בשיטה שלי עזרתי ל 280+ מתאמנים<br />להיפטר מהבטן התחתונה<br />לבנות גוף חטוב, שגרה בריאה ולהבין<br />איך להצליח לבד - כדי שיהפכו<br />לחטובים לנצח
+    </h1>
 
-  <!-- Showcase Video Section -->
-  <section id="showcase-video" class="-mt-14 md:mt-10 pt-0 pb-0 px-4 md:px-10 bg-[#0c0e0f] relative z-10 overflow-hidden">
-    <div class="max-w-4xl mx-auto text-center flex flex-col items-center">
-      <div class="video-showcase-container w-full max-w-[400px] aspect-[16/9]">
-        <video class="w-full h-full object-cover" controls
-          poster="https://lh3.googleusercontent.com/aida-public/AB6AXuAflA1jAuTQQl5VUnWOGaw7Rj1YVTJtO_KWyb95IVlhE3weZ7jSMesNDIzCcTHOzRl59ECOVCJmY5xrg1rmyVGZ3gsDJQI4jMjVgOTA6MdlJNr4O6nbHrrWzmGq35ISyrN4iv__VmZzcF1F1swtL8XAqW3N0IFJGNQItBo5dyhcL_A2lvJP68ClotqGygJ2Yj_bM7umuigRxYAgUoTpPktpj95Pf6hmPwR95rrG4zJdiiA6dfycLTHpWi9CqWgmEQ5h5crSutyad9s">
-          <source src="" type="video/mp4">
-        </video>
-        <div
-          class="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/40 group pointer-events-none">
-          <span
-            class="material-symbols-outlined text-7xl text-[#087fa3]/80 group-hover:text-[#5bd4ff] transition-colors">play_circle</span>
-          <p class="font-label text-sm tracking-[0.2em] uppercase text-[#9abaca] px-4">לחצו לצפייה בסרטון</p>
+    <!-- Fine print -->
+    <p class="text-xs text-[#5a6e78] font-body mb-1 max-w-xs md:max-w-md mx-auto">
+      (ו\)גם אם אתם עסוקים ברמות X בלי ריצות X תפריטים מוזרים
+    </p>
+    <p class="text-xs text-[#5a6e78] font-body mb-7 max-w-xs md:max-w-md mx-auto">
+      (ו\)גם אם הגנטיקה שלכם מאפנה וקשה לכם להתמיד
+    </p>
+
+    <!-- Video Player -->
+    <div class="video-showcase-container w-full max-w-[360px] md:max-w-[480px] aspect-[4/3] md:aspect-[16/9] relative cursor-pointer group" onclick="document.getElementById('video-modal').classList.remove('hidden')">
+      <div class="absolute inset-0 rounded-3xl bg-[#161a1c] border border-[#2a3438] flex items-center justify-center shadow-[0_8px_40px_rgba(0,0,0,0.5)] overflow-hidden">
+        <div class="flex flex-col items-center gap-3 z-10">
+          <div class="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
+            <span class="material-symbols-outlined text-4xl text-[#0c0e0f] translate-x-0.5">play_arrow</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
+
+  <!-- Showcase Video Section (id kept for scroll anchoring) -->
+  <section id="showcase-video" class="hidden"></section>
 
   <!-- Desktop Vertical Video & CTA Section (Hidden on Mobile) -->
   <section id="hero-extra-content"
@@ -776,7 +766,7 @@
   </div>
 
   <!-- Before/After Strip (Hero) -->
-  <section class="pt-12 pb-6 bg-[#0c0e0f] overflow-hidden" id="ba-viewport" style="cursor: grab; touch-action: pan-y;">
+  <section class="pt-12 pb-6 bg-[#0d272f] overflow-hidden" id="ba-viewport" style="cursor: grab; touch-action: pan-y;">
     <div id="ba-track" style="display: flex; gap: 16px; will-change: transform; user-select: none;">
       <div class="flex-shrink-0 w-[160px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
@@ -1745,7 +1735,7 @@
     <div class="pt-8 border-t border-[#3f484d]/20 w-full max-w-4xl text-center">
       <div class="font-headline text-lg font-bold text-[#e2e2e3]" style="">דר נאור</div>
 
-      <p class="font-label text-[10px] uppercase tracking-[0.2em] text-[#3f484d]" style="">©דר נאור- חטובים לנצח</p>
+      <p class="font-label text-[10px] uppercase tracking-[0.2em] text-[#3f484d]" style="">נבנה באהבה- יאיר עפרון </p>
 
     </div>
   </footer>
