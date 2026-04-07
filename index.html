@@ -611,6 +611,11 @@
         class="text-[#e2e2e3] hover:text-[#79d1f9] transition-colors font-headline text-[15px] tracking-widest cursor-pointer no-underline font-bold whitespace-nowrap">מתאמנים
         מספרים</a>
     </div>
+    <div class="flex items-center">
+      <a href="#contact"
+        class="bg-[#087fa3] hover:bg-[#0a8fb5] text-white font-headline font-bold text-[15px] px-3 py-2 lg:px-5 rounded-xl transition-colors whitespace-nowrap">לשיחת
+        התאמה</a>
+    </div>
   </nav>
 
   <!-- Mobile Menu Overlay -->
@@ -687,9 +692,12 @@
       <img class="hidden md:block w-full h-full object-cover" style="object-position: center 25%;"
         src="./images/hero_new.jpg" alt="דר נאור אימון">
     </div>
-    <div class="relative z-20 space-y-1 md:space-y-2 max-w-6xl px-2 flex flex-col items-center">
+    <div class="relative z-20 max-w-6xl px-2 flex flex-col items-center mt-40 md:mt-56">
       <p class="text-lg md:text-4xl text-[#c8d8e0] font-body font-bold leading-tight max-w-none mx-auto">
-        אתם נותנים הכל באימונים ועכשיו הגיע הזמן<br />לשיטה מדוייקת שתעשה אתכם חטובים לנצח
+        למתאמנים שמשקיעים במכון בשביל גוף חטוב ובריא<br />אבל נמאס להם מתוצאות בינוניות או זמניות
+      </p>
+      <p class="text-base md:text-2xl text-[#c8d8e0] font-body leading-tight max-w-none mx-auto mt-6 md:mt-8">
+        בשיטה שלי עזרתי ל 280+ מתאמנים להיפטר מהבטן התחתונה<br />לבנות גוף חטוב, שגרה בריאה ולהבין איך להצליח לבד - כדי שיהפכו לחטובים לנצח
       </p>
       <!-- Mobile Only Section Hidden for Clean Hero Look -->
     </div>
@@ -904,14 +912,6 @@
       </div>
     </div>
   </section>
-  <!-- Transformations Video Carousel -->
-  <section id="transformations" class="pt-8 pb-12 px-6 md:px-20 bg-[#121415] overflow-hidden">
-    <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-8">
-        <div class="space-y-4 text-right w-full" dir="rtl">
-          <h2 class="text-4xl font-bold font-headline text-center md:text-right">סרטוני המלצה</h2>
-        </div>
-      </div>
 
       <!-- CTA Button -->
   <div class="relative z-10 bg-[#0c0e0f] -mx-6 md:-mx-20">
@@ -925,6 +925,16 @@
         התחייבות</p>
     </div>
   </div>
+
+  <!-- Transformations Video Carousel -->
+  <section id="transformations" class="pt-8 pb-12 px-6 md:px-20 bg-[#121415] overflow-hidden">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-10 gap-8">
+        <div class="space-y-4 text-right w-full" dir="rtl">
+          <h2 class="text-4xl font-bold font-headline text-center md:text-right">סרטוני המלצה</h2>
+        </div>
+      </div>
+
 
       <!-- Carousel Container -->
       <div class="relative">
@@ -1086,75 +1096,175 @@
 
     </div>
   </section>
-  <!-- Before/After 3D Carousel — כמוהם -->
-  <section id="trainees-carousel" class="py-10 px-6 md:px-20 bg-[#121415] overflow-hidden">
-    <div class="max-w-7xl mx-auto mb-6">
-      <h2 class="text-3xl md:text-5xl font-bold font-headline text-center drop-shadow-[0_0_15px_rgba(91,212,255,0.4)]">
-        כמוהם</h2>
-    </div>
+  
+<!-- How the Process Works -->
+  <section class="py-16 px-6 md:px-20 bg-[#0c0e0f]" dir="rtl">
+    <style>
+      /* ── Process unfold animation ── */
+      .process-step {
+        opacity: 0;
+        transform: translateY(24px);
+        transition: opacity 0.55s ease, transform 0.55s ease;
+      }
+      .process-step.unfolded {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .process-icon {
+        transform: scale(0.4);
+        opacity: 0;
+        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+      }
+      .process-step.unfolded .process-icon {
+        transform: scale(1);
+        opacity: 1;
+      }
+      .process-content {
+        max-height: 0;
+        overflow: hidden;
+        opacity: 0;
+        transition: max-height 0.5s ease, opacity 0.45s ease 0.1s;
+      }
+      .process-step.unfolded .process-content {
+        max-height: 200px;
+        opacity: 1;
+      }
+      /* Vertical line grows downward */
+      .process-line {
+        transform-origin: top;
+        transform: scaleY(0);
+        transition: transform 0.6s ease;
+      }
+      .process-step.unfolded .process-line {
+        transform: scaleY(1);
+      }
+    </style>
 
-    <div class="carousel-3d-container">
-      <div class="carousel-3d-inner">
-        <!-- Item 1 -->
-        <div class="carousel-3d-item">
-          <img
-            src="/Users/yaire/.gemini/antigravity/brain/f2b3a5f0-e367-4b7b-9182-098f10f2a13f/fitness_transformation_1_1774831750146.png"
-            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-            alt="Transformation 1">
+    <div class="max-w-2xl mx-auto">
+      <div class="text-center mb-12">
+        <p class="text-xs font-label text-[#087fa3] tracking-widest uppercase mb-3">המסלול שלנו</p>
+        <h2 class="text-4xl font-headline font-light">איך התהליך עובד</h2>
+      </div>
+
+      <div class="space-y-0">
+
+        <!-- Step 1 -->
+        <div class="process-step flex gap-6 items-start pb-0" data-delay="0">
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3] bg-[#0c0e0f] flex items-center justify-center z-10">
+              <span class="material-symbols-outlined text-[#087fa3] text-2xl">visibility</span>
+            </div>
+            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/60 to-[#087fa3]/20 mt-1"></div>
+          </div>
+          <div class="process-content pb-8 flex-1">
+            <p class="text-xs font-label text-[#087fa3] tracking-widest uppercase mb-1">שלב 1</p>
+            <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">מתרשמים</h3>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">מתרשמים מהתוכנית והמתאמנים המרוצים שלי — <span class="text-[#5bd4ff]">אתם נמצאים כאן עכשיו</span></p>
+          </div>
         </div>
-        <!-- Item 2 -->
-        <div class="carousel-3d-item">
-          <img
-            src="/Users/yaire/.gemini/antigravity/brain/f2b3a5f0-e367-4b7b-9182-098f10f2a13f/fitness_transformation_2_1774832864102.png"
-            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-            alt="Transformation 2">
+
+        <!-- Step 2 -->
+        <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
+              <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">edit_note</span>
+            </div>
+            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
+          </div>
+          <div class="process-content pb-8 flex-1">
+            <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 2</p>
+            <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">משאירים פרטים</h3>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">ממלאים את הטופס פה למטה או שולחים הודעה בוואצפ — זה לוקח דקה אחת</p>
+          </div>
         </div>
-        <!-- Item 3 -->
-        <div class="carousel-3d-item">
-          <img
-            src="/Users/yaire/.gemini/antigravity/brain/f2b3a5f0-e367-4b7b-9182-098f10f2a13f/fitness_transformation_3_v3_1774832916726.png"
-            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-            alt="Transformation 3">
+
+        <!-- Step 3 -->
+        <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
+              <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">call</span>
+            </div>
+            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
+          </div>
+          <div class="process-content pb-8 flex-1">
+            <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 3</p>
+            <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">לשיחת התמאה </h3>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">אני אישית אתקשר להבין יחד איתך מה המטרות שלך, והאם התוכנית מתאימה לך. אם כן — אסביר איך הכל עובד ונצא לדרך. אם לא — אכוון אותך לאפשרות שהכי מתאימה לך.</p>
+          </div>
         </div>
-        <!-- Item 4 -->
-        <div class="carousel-3d-item">
-          <img
-            src="/Users/yaire/.gemini/antigravity/brain/f2b3a5f0-e367-4b7b-9182-098f10f2a13f/fitness_transformation_4_1774831780540.png"
-            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-            alt="Transformation 4">
+
+        <!-- Step 4 -->
+        <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
+              <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">assignment</span>
+            </div>
+            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
+          </div>
+          <div class="process-content pb-8 flex-1">
+            <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 4</p>
+            <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">פגישת התחלה</h3>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">נעשה את פגישת התחלת התהליך שלנו — נבנה לך תוכנית תזונה ואימון שתתאים לך בדיוק כדי להגיע אל המטרות שלך</p>
+          </div>
         </div>
-        <!-- Item 5 -->
-        <div class="carousel-3d-item">
-          <img
-            src="/Users/yaire/.gemini/antigravity/brain/f2b3a5f0-e367-4b7b-9182-098f10f2a13f/fitness_transformation_5_v3_1774833014917.png"
-            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-            alt="Transformation 5">
+
+        <!-- Step 5 -->
+        <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
+              <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">monitoring</span>
+            </div>
+            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
+          </div>
+          <div class="process-content pb-8 flex-1">
+            <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 5</p>
+            <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">יוצאים לדרך</h3>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">אני אוודא דרך הוואצפ, האפליקציה והפגישות שאנחנו מתקדמים כמו שרצינו. אם לא — אעשה את השינויים הנדרשים. זה פשוט — אני רק צריך שתהיו מחויבים להנחיות שלי.</p>
+          </div>
         </div>
-        <!-- Item 6 -->
-        <div class="carousel-3d-item">
-          <img
-            src="/Users/yaire/.gemini/antigravity/brain/f2b3a5f0-e367-4b7b-9182-098f10f2a13f/fitness_transformation_6_1774832949820.png"
-            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-            alt="Transformation 6">
+
+        <!-- Step 6 -->
+        <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
+              <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">school</span>
+            </div>
+            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
+          </div>
+          <div class="process-content pb-8 flex-1">
+            <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 6</p>
+            <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">לומדים את השגרה</h3>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">תוך כדי התהליך אלמד אתכם איך לנהל את שגרת התזונה והאימונים לבד — כדי שתגיעו אל היעד הכי מהר שאפשר, ותהיו מוכנים לדרך העצמאית</p>
+          </div>
         </div>
-        <!-- Item 7 -->
-        <div class="carousel-3d-item">
-          <img
-            src="/Users/yaire/.gemini/antigravity/brain/f2b3a5f0-e367-4b7b-9182-098f10f2a13f/fitness_transformation_7_1774832981274.png"
-            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-            alt="Transformation 7">
+
+        <!-- Step 7 — Final -->
+        <div class="process-step flex gap-6 items-start" data-delay="100">
+          <div class="flex flex-col items-center flex-shrink-0">
+            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3] bg-gradient-to-br from-[#0a9bc4]/20 to-[#006781]/20 flex items-center justify-center z-10 shadow-[0_0_20px_rgba(10,155,196,0.3)]">
+              <span class="material-symbols-outlined text-[#5bd4ff] text-2xl">emoji_events</span>
+            </div>
+          </div>
+          <div class="process-content pb-2 flex-1">
+            <p class="text-xs font-label text-[#087fa3] tracking-widest uppercase mb-1">המטרה</p>
+            <h3 class="text-xl font-headline font-semibold text-[#5bd4ff] mb-1">הגוף שרצית</h3>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">אתם מסתובבים עם הגוף הבריא והחטוב שלכם — כמו כל החברה שראיתם למעלה</p>
+          </div>
         </div>
-        <!-- Item 8 -->
-        <div class="carousel-3d-item">
-          <img
-            src="/Users/yaire/.gemini/antigravity/brain/f2b3a5f0-e367-4b7b-9182-098f10f2a13f/fitness_transformation_8_v2_1774833027915.png"
-            class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-            alt="Transformation 8">
-        </div>
+
       </div>
     </div>
   </section>
-
+  <!-- CTA Button -->
+  <div class="relative z-10 bg-[#0c0e0f]">
+    <div class="flex flex-col items-center px-0 md:px-6 py-4 pb-12">
+      <a href="#contact"
+        class="w-full md:w-auto inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#0a9bc4] to-[#006781] text-white px-14 py-5 rounded-none md:rounded-full shadow-[0_0_15px_rgba(10,155,196,0.3)] hover:scale-[1.02] active:scale-95 transition-all duration-300 no-underline">
+        <span class="font-headline font-bold text-2xl leading-none drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]"> בוא נדבר 
+           </span>
+      </a>
+    </div>
+  </div>
 
   <!-- How It Works — Curved Interactive Journey -->
   <section id="how-it-works" class="py-24 px-6 md:px-20 bg-[#0c0e0f] overflow-hidden">
@@ -1576,164 +1686,7 @@
       </div>
   </section>
 
-  <!-- How the Process Works -->
-  <section class="py-16 px-6 md:px-20 bg-[#0c0e0f]" dir="rtl">
-    <style>
-      /* ── Process unfold animation ── */
-      .process-step {
-        opacity: 0;
-        transform: translateY(24px);
-        transition: opacity 0.55s ease, transform 0.55s ease;
-      }
-      .process-step.unfolded {
-        opacity: 1;
-        transform: translateY(0);
-      }
-      .process-icon {
-        transform: scale(0.4);
-        opacity: 0;
-        transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
-      }
-      .process-step.unfolded .process-icon {
-        transform: scale(1);
-        opacity: 1;
-      }
-      .process-content {
-        max-height: 0;
-        overflow: hidden;
-        opacity: 0;
-        transition: max-height 0.5s ease, opacity 0.45s ease 0.1s;
-      }
-      .process-step.unfolded .process-content {
-        max-height: 200px;
-        opacity: 1;
-      }
-      /* Vertical line grows downward */
-      .process-line {
-        transform-origin: top;
-        transform: scaleY(0);
-        transition: transform 0.6s ease;
-      }
-      .process-step.unfolded .process-line {
-        transform: scaleY(1);
-      }
-    </style>
 
-    <div class="max-w-2xl mx-auto">
-      <div class="text-center mb-12">
-        <p class="text-xs font-label text-[#087fa3] tracking-widest uppercase mb-3">המסלול שלנו</p>
-        <h2 class="text-4xl font-headline font-light">איך התהליך עובד</h2>
-      </div>
-
-      <div class="space-y-0">
-
-        <!-- Step 1 -->
-        <div class="process-step flex gap-6 items-start pb-0" data-delay="0">
-          <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3] bg-[#0c0e0f] flex items-center justify-center z-10">
-              <span class="material-symbols-outlined text-[#087fa3] text-2xl">visibility</span>
-            </div>
-            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/60 to-[#087fa3]/20 mt-1"></div>
-          </div>
-          <div class="process-content pb-8 flex-1">
-            <p class="text-xs font-label text-[#087fa3] tracking-widest uppercase mb-1">שלב 1</p>
-            <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">מתרשמים</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">מתרשמים מהתוכנית והמתאמנים המרוצים שלי — <span class="text-[#5bd4ff]">אתם נמצאים כאן עכשיו</span></p>
-          </div>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
-          <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
-              <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">edit_note</span>
-            </div>
-            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
-          </div>
-          <div class="process-content pb-8 flex-1">
-            <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 2</p>
-            <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">משאירים פרטים</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">ממלאים את הטופס פה למטה או שולחים הודעה בוואצפ — זה לוקח דקה אחת</p>
-          </div>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
-          <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
-              <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">call</span>
-            </div>
-            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
-          </div>
-          <div class="process-content pb-8 flex-1">
-            <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 3</p>
-            <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">שיחת התאמה</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">אני אישית אתקשר להבין יחד איתך מה המטרות שלך, והאם התוכנית מתאימה לך. אם כן — אסביר איך הכל עובד ונצא לדרך. אם לא — אכוון אותך לאפשרות שהכי מתאימה לך.</p>
-          </div>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
-          <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
-              <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">assignment</span>
-            </div>
-            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
-          </div>
-          <div class="process-content pb-8 flex-1">
-            <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 4</p>
-            <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">פגישת התחלה</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">נעשה את פגישת התחלת התהליך שלנו — נבנה לך תוכנית תזונה ואימון שתתאים לך בדיוק כדי להגיע אל המטרות שלך</p>
-          </div>
-        </div>
-
-        <!-- Step 5 -->
-        <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
-          <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
-              <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">monitoring</span>
-            </div>
-            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
-          </div>
-          <div class="process-content pb-8 flex-1">
-            <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 5</p>
-            <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">יוצאים לדרך</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">אני אוודא דרך הוואצפ, האפליקציה והפגישות שאנחנו מתקדמים כמו שרצינו. אם לא — אעשה את השינויים הנדרשים. זה פשוט — אני רק צריך שתהיו מחויבים להנחיות שלי.</p>
-          </div>
-        </div>
-
-        <!-- Step 6 -->
-        <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
-          <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
-              <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">school</span>
-            </div>
-            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
-          </div>
-          <div class="process-content pb-8 flex-1">
-            <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 6</p>
-            <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">לומדים את השגרה</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">תוך כדי התהליך אלמד אתכם איך לנהל את שגרת התזונה והאימונים לבד — כדי שתגיעו אל היעד הכי מהר שאפשר, ותהיו מוכנים לדרך העצמאית</p>
-          </div>
-        </div>
-
-        <!-- Step 7 — Final -->
-        <div class="process-step flex gap-6 items-start" data-delay="100">
-          <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3] bg-gradient-to-br from-[#0a9bc4]/20 to-[#006781]/20 flex items-center justify-center z-10 shadow-[0_0_20px_rgba(10,155,196,0.3)]">
-              <span class="material-symbols-outlined text-[#5bd4ff] text-2xl">emoji_events</span>
-            </div>
-          </div>
-          <div class="process-content pb-2 flex-1">
-            <p class="text-xs font-label text-[#087fa3] tracking-widest uppercase mb-1">המטרה</p>
-            <h3 class="text-xl font-headline font-semibold text-[#5bd4ff] mb-1">הגוף שרצית</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">אתם מסתובבים עם הגוף הבריא והחטוב שלכם — כמו כל החברה שראיתם למעלה</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
 
   <script>
     (function () {
