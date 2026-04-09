@@ -331,7 +331,8 @@
     .how-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 1rem;
+      column-gap: 1rem;
+      row-gap: 5rem;
       width: 100%;
       max-width: 600px;
       margin: 0 auto 1.5rem;
@@ -348,10 +349,14 @@
     .how-grid-label {
       font-family: 'Assistant', sans-serif;
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 4rem;
       color: #8aa4af;
       text-align: center;
       line-height: 1.2;
+      min-height: 2.5em;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
       transition: color 0.3s;
     }
 
@@ -361,7 +366,7 @@
     }
 
     .how-grid-icon-box {
-      width: 100%;
+      width: 62%;
       aspect-ratio: 1 / 1;
       border: 1.5px solid rgba(8, 127, 163, 0.35);
       border-radius: 12px;
@@ -430,15 +435,16 @@
 
     @media (max-width: 767px) {
       .how-grid {
-        gap: 0.6rem;
+        column-gap: 0.6rem;
+        row-gap: 2rem;
       }
 
       .how-grid-label {
-        font-size: 0.72rem;
+        font-size: 1rem;
       }
 
       .how-grid-icon-box .material-symbols-outlined {
-        font-size: 1.6rem !important;
+        font-size: 2.5rem !important;
       }
 
       .how-explanation-box {
@@ -1433,57 +1439,57 @@
       <!-- 3×3 Grid -->
       <div class="how-grid">
         <div class="how-grid-item active" data-how="0" onclick="selectHowItem(0)">
-          <span class="how-grid-label">פגישת היכרות</span>
+          <span class="how-grid-label">פגישת  <br>היכרות</span>
           <div class="how-grid-icon-box">
-            <span class="material-symbols-outlined" style="font-size:2rem">handshake</span>
+            <span class="material-symbols-outlined" style="font-size:5rem">handshake</span>
           </div>
         </div>
         <div class="how-grid-item" data-how="1" onclick="selectHowItem(1)">
           <span class="how-grid-label">תוכנית תזונה מלאה</span>
           <div class="how-grid-icon-box">
-            <span class="material-symbols-outlined" style="font-size:2rem">restaurant</span>
+            <span class="material-symbols-outlined" style="font-size:5rem">restaurant</span>
           </div>
         </div>
         <div class="how-grid-item" data-how="2" onclick="selectHowItem(2)">
           <span class="how-grid-label">שגרת אימונים ייחודית</span>
           <div class="how-grid-icon-box">
-            <span class="material-symbols-outlined" style="font-size:2rem">fitness_center</span>
+            <span class="material-symbols-outlined" style="font-size:5rem">fitness_center</span>
           </div>
         </div>
         <div class="how-grid-item" data-how="3" onclick="selectHowItem(3)">
-          <span class="how-grid-label">אימון טכניקה מלא</span>
+          <span class="how-grid-label">אימון טכניקה<br> מלא</span>
           <div class="how-grid-icon-box">
-            <span class="material-symbols-outlined" style="font-size:2rem">sports_martial_arts</span>
+            <span class="material-symbols-outlined" style="font-size:5rem">sports_martial_arts</span>
           </div>
         </div>
         <div class="how-grid-item" data-how="4" onclick="selectHowItem(4)">
           <span class="how-grid-label">זמינות מהירה בוואצפ</span>
           <div class="how-grid-icon-box">
-            <span class="material-symbols-outlined" style="font-size:2rem">chat</span>
+            <span class="material-symbols-outlined" style="font-size:5rem">chat</span>
           </div>
         </div>
         <div class="how-grid-item" data-how="5" onclick="selectHowItem(5)">
-          <span class="how-grid-label">פגישת עדכון בוידאו</span>
+          <span class="how-grid-label">פגישת עדכון <br>בוידאו</span>
           <div class="how-grid-icon-box">
-            <span class="material-symbols-outlined" style="font-size:2rem">videocam</span>
+            <span class="material-symbols-outlined" style="font-size:5rem">videocam</span>
           </div>
         </div>
         <div class="how-grid-item" data-how="6" onclick="selectHowItem(6)">
-          <span class="how-grid-label">האפליקציה שלי</span>
+          <span class="how-grid-label">האפליקציה<br> שלי</span>
           <div class="how-grid-icon-box">
-            <span class="material-symbols-outlined" style="font-size:2rem">phone_iphone</span>
+            <span class="material-symbols-outlined" style="font-size:5rem">phone_iphone</span>
           </div>
         </div>
         <div class="how-grid-item" data-how="7" onclick="selectHowItem(7)">
           <span class="how-grid-label">חטובים לנצח - הקורס</span>
           <div class="how-grid-icon-box">
-            <span class="material-symbols-outlined" style="font-size:2rem">school</span>
+            <span class="material-symbols-outlined" style="font-size:5rem">school</span>
           </div>
         </div>
         <div class="how-grid-item" data-how="8" onclick="selectHowItem(8)">
           <span class="how-grid-label">מעטפת בונוסים מלאה</span>
           <div class="how-grid-icon-box">
-            <span class="material-symbols-outlined" style="font-size:2rem">card_giftcard</span>
+            <span class="material-symbols-outlined" style="font-size:5rem">card_giftcard</span>
           </div>
         </div>
       </div>
