@@ -286,7 +286,6 @@
         transform: scaleY(1);
       }
     }
-
   </style>
   <style>
     body {
@@ -329,116 +328,88 @@
     }
 
     /* Curved Timeline Styles */
-    .how-it-works-container {
-      position: relative;
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
       width: 100%;
-      height: 550px;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .how-grid-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: center;
-      overflow: visible;
-      margin-top: -1rem;
-    }
-
-    .orbital-path-svg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 120%;
-      max-width: 1200px;
-      pointer-events: none;
-      opacity: 0.3;
-      z-index: 0;
-    }
-
-    .orbital-navigation {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -10%);
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 20;
-    }
-
-    .orbital-dot {
-      position: absolute;
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: #1a1c1d;
-      border: 1px solid rgba(8, 127, 163, 0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      gap: 0.4rem;
       cursor: pointer;
-      transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      color: #3f484d;
-      z-index: 25;
     }
 
-    .orbital-dot.active {
-      background: #087fa3;
-      color: white;
-      border-color: #5bd4ff;
-      box-shadow: 0 0 20px rgba(8, 127, 163, 0.6);
-      transform: scale(1.3) !important;
-      z-index: 30;
+    .how-grid-label {
+      font-family: 'Assistant', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      color: #8aa4af;
+      text-align: center;
+      line-height: 1.2;
+      transition: color 0.3s;
     }
 
-    .orbital-dot:hover {
-      border-color: #087fa3;
+    .how-grid-item.active .how-grid-label,
+    .how-grid-item:hover .how-grid-label {
       color: #5bd4ff;
     }
 
-    .how-content-display {
-      position: relative;
-      z-index: 10;
-      text-align: center;
+    .how-grid-icon-box {
       width: 100%;
-      max-width: 600px;
-      padding: 0 2rem;
+      aspect-ratio: 1 / 1;
+      border: 1.5px solid rgba(8, 127, 163, 0.35);
+      border-radius: 12px;
+      background: rgba(8, 127, 163, 0.07);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: #3f6a7a;
     }
 
-    .how-slide {
-      display: none;
-      animation: howFadeIn 0.6s ease-out forwards;
+    .how-grid-item.active .how-grid-icon-box {
+      border-color: #5bd4ff;
+      background: rgba(8, 127, 163, 0.22);
+      box-shadow: 0 0 18px rgba(8, 127, 163, 0.45);
+      color: #5bd4ff;
+    }
+
+    .how-grid-item:hover .how-grid-icon-box {
+      border-color: #087fa3;
+      background: rgba(8, 127, 163, 0.15);
+      color: #5bd4ff;
+    }
+
+    .how-explanation-box {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      border: 1.5px solid rgba(8, 127, 163, 0.3);
+      border-radius: 14px;
+      background: rgba(8, 127, 163, 0.06);
+      padding: 1.5rem 1.75rem;
+      min-height: 120px;
+      text-align: center;
+      color: #c8d8e0;
+      font-family: 'Assistant', sans-serif;
+      font-size: 1rem;
+      line-height: 1.7;
+      transition: all 0.4s ease;
     }
 
     @keyframes howFadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.95);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    @keyframes howCircularIn {
-      0% {
-        opacity: 0;
-        transform: translate(-30px, 30px) scale(0.8) rotate(-5deg);
-      }
-
-      100% {
-        opacity: 1;
-        transform: translate(0, 0) scale(1) rotate(0deg);
-      }
-    }
-
-    .how-slide.active {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      animation: howCircularIn 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    .how-explanation-box p {
+      animation: howFadeIn 0.4s ease-out forwards;
     }
 
     .video-showcase-container {
@@ -457,64 +428,22 @@
       transform: translateY(-2px);
     }
 
-    .how-nav-arrow {
-      position: relative;
-      width: 84px;
-      height: 84px;
-      border-radius: 50%;
-      aspect-ratio: 1/1;
-      background: radial-gradient(circle at 30% 30%, rgba(91, 212, 255, 0.2), rgba(8, 127, 163, 0.1));
-      backdrop-filter: blur(15px);
-      border: 3px solid #087fa3;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 40;
-      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 0 0 2px rgba(8, 127, 163, 0.1), 0 0 30px rgba(8, 127, 163, 0.3);
-      color: #5bd4ff;
-    }
-
-    .how-nav-arrow:hover {
-      background: radial-gradient(circle at 30% 30%, rgba(91, 212, 255, 0.4), rgba(8, 127, 163, 0.2));
-      border-color: #5bd4ff;
-      box-shadow: 0 0 0 4px rgba(91, 212, 255, 0.2), 0 0 50px rgba(8, 127, 163, 0.6);
-      transform: scale(1.15) rotate(5deg);
-      color: white;
-    }
-
-    .how-nav-arrow.prev {
-      right: 5%;
-    }
-
-    .how-nav-arrow.next {
-      left: 5%;
-    }
-
     @media (max-width: 767px) {
-      .how-it-works-container {
-        height: 500px;
+      .how-grid {
+        gap: 0.6rem;
       }
 
-      .orbital-path-svg {
-        width: 160%;
-        transform: translate(-50%, 0);
+      .how-grid-label {
+        font-size: 0.72rem;
       }
 
-      .how-nav-arrow {
-        top: auto;
-        bottom: 0;
-        width: 48px;
-        height: 48px;
+      .how-grid-icon-box .material-symbols-outlined {
+        font-size: 1.6rem !important;
       }
 
-      .how-nav-arrow.prev {
-        right: 25%;
-      }
-
-      .how-nav-arrow.next {
-        left: 25%;
+      .how-explanation-box {
+        font-size: 0.9rem;
+        padding: 1.1rem 1.2rem;
       }
     }
 
@@ -678,23 +607,26 @@
     </div>
   </div>
 
-  <section id="hero"
-    class="w-full flex flex-col items-center text-center px-5 md:px-10 pt-12 pb-8 bg-[#0d272f]"
+  <section id="hero" class="w-full flex flex-col items-center text-center px-5 md:px-10 pt-12 pb-8 bg-[#0d272f]"
     style="box-shadow: inset 0 0 120px rgba(0,0,0,0.7), inset 0 -60px 80px rgba(0,0,0,0.5);">
 
     <!-- Subtitle -->
-    <p class="text-base md:text-lg text-[#8fa8b5] font-body leading-snug max-w-sm md:max-w-xl mx-auto mb-5 font-bold mt-6 md:mt-10">
+    <p
+      class="text-base md:text-lg text-[#8fa8b5] font-body leading-snug max-w-sm md:max-w-xl mx-auto mb-5 font-bold mt-6 md:mt-10">
       למתאמנים שמשקיעים במכון בשביל גוף חטוב ובריא אבל נמאס להם מתוצאות בינוניות אן זמניות
     </p>
 
     <!-- Main Headline -->
-    <h1 class="text-[1.45rem] md:text-3xl font-headline font-black text-[#e2e2e3] leading-tight max-w-sm md:max-w-2xl mx-auto mb-5 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"
+    <h1
+      class="text-[1.45rem] md:text-3xl font-headline font-black text-[#e2e2e3] leading-tight max-w-sm md:max-w-2xl mx-auto mb-5 drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]"
       style="-webkit-text-stroke: 0.1px rgba(91,212,255,0.2); text-shadow: 0 0 20px rgba(91,212,255,0.2), 0 0 40px rgba(8,127,163,0.15);">
-      בשיטה שלי עזרתי ל 280+ מתאמנים<br />להיפטר מהבטן התחתונה לבנות גוף חטוב<br />שגרה בריאה ולהבין איך להצליח לבד<br />כדי שיהפכו לחטובים לנצח
+      בשיטה שלי עזרתי ל 280+ מתאמנים<br />להיפטר מהבטן התחתונה לבנות גוף חטוב<br />שגרה בריאה ולהבין איך להצליח
+      לבד<br />כדי שיהפכו לחטובים לנצח
     </h1>
 
     <!-- Fine print  -->
-    <div class="text-sm md:text-base font-body mb-7 max-w-xs md:max-w-md mx-auto flex flex-col gap-1 items-center" dir="rtl">
+    <div class="text-sm md:text-base font-body mb-7 max-w-xs md:max-w-md mx-auto flex flex-col gap-1 items-center"
+      dir="rtl">
       <div class="flex items-center gap-1.5">
         <span class="text-green-400">✓</span>
         <span class="text-[#5a6e78]">גם אם אתם עסוקים ברמות</span>
@@ -716,13 +648,17 @@
     </div>
 
     <!-- Video Player -->
-    <div class="video-showcase-container w-full max-w-[480px] md:max-w-[480px] aspect-[16/9] relative cursor-pointer group" onclick="document.getElementById('video-modal').classList.remove('hidden')">
-      <div class="absolute inset-0 rounded-3xl bg-[#161a1c] border border-[#2a3438] flex items-center justify-center shadow-[0_8px_40px_rgba(0,0,0,0.5)] overflow-hidden">
+    <div
+      class="video-showcase-container w-full max-w-[480px] md:max-w-[480px] aspect-[16/9] relative cursor-pointer group"
+      onclick="document.getElementById('video-modal').classList.remove('hidden')">
+      <div
+        class="absolute inset-0 rounded-3xl bg-[#161a1c] border border-[#2a3438] flex items-center justify-center shadow-[0_8px_40px_rgba(0,0,0,0.5)] overflow-hidden">
         <div class="flex flex-col items-center gap-3 z-10 relative">
           <!-- Pulse ring -->
           <div class="absolute w-24 h-24 rounded-full border-2 border-[#0a9bc4]/40 animate-ping"></div>
           <!-- Button -->
-          <div class="w-20 h-20 rounded-full bg-[#087fa3] flex items-center justify-center shadow-[0_0_32px_rgba(10,155,196,0.5)] group-hover:scale-110 group-hover:shadow-[0_0_48px_rgba(10,155,196,0.8)] transition-all duration-300">
+          <div
+            class="w-20 h-20 rounded-full bg-[#087fa3] flex items-center justify-center shadow-[0_0_32px_rgba(10,155,196,0.5)] group-hover:scale-110 group-hover:shadow-[0_0_48px_rgba(10,155,196,0.8)] transition-all duration-300">
             <span class="material-symbols-outlined text-5xl text-white translate-x-0.5">play_arrow</span>
           </div>
         </div>
@@ -733,69 +669,51 @@
     <div class="w-full mt-7 overflow-hidden" dir="ltr">
       <div id="hero-ba-viewport" class="overflow-hidden w-full" style="cursor: grab; touch-action: pan-y;">
         <div id="hero-ba-track" class="flex gap-3" style="will-change: transform; user-select: none;">
-          <!-- Card 1 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+          <!-- Card 1 — real image -->
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
             <img src="images/b1.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
           </div>
-          <!-- Card 2 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+          <!-- Card 2 — real image -->
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
             <img src="images/b2.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
           </div>
-          <!-- Card 3 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/17.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
+          <!-- Cards 3–8 — placeholders -->
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
-          <!-- Card 4 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/18.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
-          <!-- Card 5 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/19.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
-          <!-- Card 6 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/20.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
-          <!-- Card 7 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/21.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
-          <!-- Card 8 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/22.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
-          <!-- Card 9 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/23.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-          </div>
-          <!-- Card 10 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/24.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-          </div>
-          <!-- Card 11 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/25.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-          </div>
-          <!-- Card 12 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/26.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-          </div>
-          <!-- Card 13 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/27.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-          </div>
-          <!-- Card 14 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/28.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-          </div>
-          <!-- Card 15 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/29.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-          </div>
-          <!-- Card 16 -->
-          <div class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
-            <img src="images/30.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
           </div>
         </div>
       </div>
@@ -839,30 +757,38 @@
   </div>
 
   <!-- Before/After Strip (Hero) -->
-  <section class="hidden md:block pt-[6px] pb-2 bg-[#0c0e0f] overflow-hidden" id="ba-viewport" style="cursor: grab; touch-action: pan-y;">
+  <section class="block pt-[6px] pb-2 bg-[#0c0e0f] overflow-hidden" id="ba-viewport"
+    style="cursor: grab; touch-action: pan-y;">
     <div id="ba-track" style="display: flex; gap: 16px; will-change: transform; user-select: none;">
       <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
         <img src="images/b1.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
     </div>
@@ -932,8 +858,9 @@
           במשרד קטן לייעוצי תזונה - שם הבנתי שני דברים:
         </p>
 
-         <div class="border-r-4 border-[#087fa3] pr-5 py-3 space-y-2" dir="rtl" style="text-align: right;">
-          <p class="text-xl text-[#e2e2e3] font-headline font-bold leading-snug">אני נהנה ברמות מלעזור לאנשים לשנות את החיים שלהם.</p>
+        <div class="border-r-4 border-[#087fa3] pr-5 py-3 space-y-2" dir="rtl" style="text-align: right;">
+          <p class="text-xl text-[#e2e2e3] font-headline font-bold leading-snug">אני נהנה ברמות מלעזור לאנשים לשנות את
+            החיים שלהם.</p>
           <p class="text-xl text-[#5bd4ff] font-headline font-bold leading-snug">מסתבר שאני ממש טוב בזה.</p>
         </div>
 
@@ -963,36 +890,44 @@
   </section>
 
   <!-- Before/After Strip (Story) — desktop only -->
-  <section class="hidden md:block pt-[6px] pb-2 bg-[#121415] overflow-hidden" id="ba-viewport-2" style="cursor: grab; touch-action: pan-y;">
+  <section class="hidden md:block pt-[6px] pb-2 bg-[#121415] overflow-hidden" id="ba-viewport-2"
+    style="cursor: grab; touch-action: pan-y;">
     <div id="ba-track-2" style="display: flex; gap: 16px; will-change: transform; user-select: none;">
       <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
         <img src="images/b2.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
+      <div
+        class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] bg-[#1a1c1d] rounded-2xl border border-[#3f484d]/30 flex items-center justify-center">
         <p class="font-label text-[10px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
       </div>
     </div>
   </section>
 
-      <!-- CTA Button -->
+  <!-- CTA Button -->
   <div class="relative z-10 bg-[#0c0e0f] -mx-6 md:-mx-20">
     <div class="flex flex-col items-center pb-12">
       <a href="#contact"
@@ -1188,11 +1123,14 @@
           </h2>
 
           <p class="text-[#9ba8ae] text-base md:text-lg leading-relaxed">
-            ב"חטובים לנצח", אני מאמין בלתת לכם חכה, לא דג. <span class="text-[#5bd4ff]/70 text-sm">(סליחה על הקלישאה, אבל אני הכי רציני שיש).</span>
+            ב"חטובים לנצח", אני מאמין בלתת לכם חכה, לא דג. <span class="text-[#5bd4ff]/70 text-sm">(סליחה על הקלישאה,
+              אבל אני הכי רציני שיש).</span>
           </p>
 
           <p class="text-[#9ba8ae] text-base md:text-lg leading-relaxed">
-            לכל אחד מאיתנו יש גנטיקה שונה, סדר יום אחר, העדפות ומטרות אחרות. לכן, כל אחד צריך תוכנית שהיא <span class="text-[#e2e2e3] font-semibold">"חליפה אישית"</span> – תזונה, אימונים והרגלים שמדויקים בדיוק אליכם. אחרת? זה פשוט לא יעבוד.
+            לכל אחד מאיתנו יש גנטיקה שונה, סדר יום אחר, העדפות ומטרות אחרות. לכן, כל אחד צריך תוכנית שהיא <span
+              class="text-[#e2e2e3] font-semibold">"חליפה אישית"</span> – תזונה, אימונים והרגלים שמדויקים בדיוק אליכם.
+            אחרת? זה פשוט לא יעבוד.
           </p>
 
           <p class="text-[#9ba8ae] text-base md:text-lg leading-relaxed">
@@ -1201,16 +1139,22 @@
 
           <div class="border-r-2 border-[#087fa3] pr-4 space-y-3">
             <p class="text-[#9ba8ae] text-base md:text-lg leading-relaxed">
-              אז איפה הבעיה? החיים דינמיים. והחליפה תצטרך התאמות לאורך השנים, וזאת הסיבה שרוב האנשים נכשלים בהשגת הגוף שמגיע להם. גם אם לקחתם חליפה מצוינת – אם לא תדעו להתאים אותה בעצמכם כשהחיים משתנים, היא הופכת לחסרת תועלת… ואז או שלא תראו תוצאות מההתחלה, או שהתוצאות יעלמו מהר מאוד, או הכי גרוע – <span class="text-[#e2e2e3] font-semibold">תהיו תלויים לנצח באנשי מקצוע.</span>
+              אז איפה הבעיה? החיים דינמיים. והחליפה תצטרך התאמות לאורך השנים, וזאת הסיבה שרוב האנשים נכשלים בהשגת הגוף
+              שמגיע להם. גם אם לקחתם חליפה מצוינת – אם לא תדעו להתאים אותה בעצמכם כשהחיים משתנים, היא הופכת לחסרת תועלת…
+              ואז או שלא תראו תוצאות מההתחלה, או שהתוצאות יעלמו מהר מאוד, או הכי גרוע – <span
+                class="text-[#e2e2e3] font-semibold">תהיו תלויים לנצח באנשי מקצוע.</span>
             </p>
           </div>
 
           <p class="text-[#9ba8ae] text-base md:text-lg leading-relaxed">
-            השיטה שלי לפתור את זה פשוטה: אני לא רק תופר לכם את החליפה המושלמת שתביא אתכם לתוצאות במינימום מאמץ ומקסימום תוצאות – <span class="text-[#e2e2e3] font-semibold">אני מלמד אתכם איך לתפור אותה בעצמכם.</span>
+            השיטה שלי לפתור את זה פשוטה: אני לא רק תופר לכם את החליפה המושלמת שתביא אתכם לתוצאות במינימום מאמץ ומקסימום
+            תוצאות – <span class="text-[#e2e2e3] font-semibold">אני מלמד אתכם איך לתפור אותה בעצמכם.</span>
           </p>
 
           <p class="text-[#9ba8ae] text-base md:text-lg leading-relaxed">
-            במהלך התהליך אני לא רק 'מאכיל אתכם בכפית' – אני מסביר לכם איך, למה וכמה. כדי שבסוף, תהפכו להיות המאמנים של עצמכם, תפסיקו להסתפק בתוצאות זמניות או בינוניות ותהיו באמת <span class="text-[#5bd4ff] font-semibold">חטובים לנצח.</span>
+            במהלך התהליך אני לא רק 'מאכיל אתכם בכפית' – אני מסביר לכם איך, למה וכמה. כדי שבסוף, תהפכו להיות המאמנים של
+            עצמכם, תפסיקו להסתפק בתוצאות זמניות או בינוניות ותהיו באמת <span class="text-[#5bd4ff] font-semibold">חטובים
+              לנצח.</span>
           </p>
 
           <p class="text-[#5bd4ff] font-headline font-bold text-xl mt-2">כמוהם</p>
@@ -1226,48 +1170,62 @@
 
       </div>
     </div>
-  </section>
 
-<!-- Before/After Strip (Why Section) -->
-  <section class="block pt-[6px] pb-2 bg-[#0c0e0f] overflow-hidden" id="ba-viewport-3" style="cursor: grab; touch-action: pan-y;">
-    <div id="ba-track-3" style="display: flex; gap: 16px; will-change: transform; user-select: none;">
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
-        <img src="images/5.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-      </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
-        <img src="images/6.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-      </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
-        <img src="images/7.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-      </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
-        <img src="images/8.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-      </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
-        <img src="images/10.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-      </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
-        <img src="images/11.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-      </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
-        <img src="images/12.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-      </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
-        <img src="images/13.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-      </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
-        <img src="images/14.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-      </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
-        <img src="images/15.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
-      </div>
-      <div class="flex-shrink-0 w-[100px] md:w-[220px] aspect-[3/4] rounded-2xl overflow-hidden">
-        <img src="images/16.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
+    <div class="w-full mt-7 overflow-hidden" dir="ltr">
+      <div id="ba-viewport-3" class="overflow-hidden w-full" style="cursor: grab; touch-action: pan-y;">
+        <div id="ba-track-3" class="flex gap-3" style="will-change: transform; user-select: none;">
+          <!-- Card 1 — real image -->
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <img src="images/b1.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
+          </div>
+          <!-- Card 2 — real image -->
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square rounded-2xl overflow-hidden border border-[#087fa3]/30 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <img src="images/b2.png" alt="לפני / אחרי" class="w-full h-full object-cover" draggable="false">
+          </div>
+          <!-- Cards 3–8 — placeholders -->
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
+          </div>
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
+          </div>
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
+          </div>
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
+          </div>
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
+          </div>
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
+          </div>
+          <div
+            class="flex-shrink-0 w-[150px] md:w-[200px] aspect-square bg-[#161a1c] rounded-2xl border border-[#3f484d]/30 flex flex-col items-center justify-center gap-2 shadow-[0_4px_20px_rgba(0,0,0,0.4)]">
+            <span class="material-symbols-outlined text-3xl text-[#3f484d]">person</span>
+            <p class="font-label text-[9px] tracking-widest uppercase text-[#3f484d]">לפני / אחרי</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-<!-- How the Process Works -->
+  <!-- How the Process Works -->
   <section class="py-16 px-6 md:px-20 bg-[#0c0e0f]" dir="rtl">
     <style>
       /* ── Process unfold animation ── */
@@ -1276,35 +1234,42 @@
         transform: translateY(24px);
         transition: opacity 0.55s ease, transform 0.55s ease;
       }
+
       .process-step.unfolded {
         opacity: 1;
         transform: translateY(0);
       }
+
       .process-icon {
         transform: scale(0.4);
         opacity: 0;
         transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
       }
+
       .process-step.unfolded .process-icon {
         transform: scale(1);
         opacity: 1;
       }
+
       .process-content {
         max-height: 0;
         overflow: hidden;
         opacity: 0;
         transition: max-height 0.5s ease, opacity 0.45s ease 0.1s;
       }
+
       .process-step.unfolded .process-content {
         max-height: 200px;
         opacity: 1;
       }
+
       /* Vertical line grows downward */
       .process-line {
         transform-origin: top;
         transform: scaleY(0);
         transition: transform 0.6s ease;
       }
+
       .process-step.unfolded .process-line {
         transform: scaleY(1);
       }
@@ -1320,104 +1285,125 @@
         <!-- Step 1 -->
         <div class="process-step flex gap-6 items-start pb-0" data-delay="0">
           <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3] bg-[#0c0e0f] flex items-center justify-center z-10">
+            <div
+              class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3] bg-[#0c0e0f] flex items-center justify-center z-10">
               <span class="material-symbols-outlined text-[#087fa3] text-2xl">visibility</span>
             </div>
-            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/60 to-[#087fa3]/20 mt-1"></div>
+            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/60 to-[#087fa3]/20 mt-1">
+            </div>
           </div>
           <div class="process-content pb-8 flex-1">
             <p class="text-xs font-label text-[#087fa3] tracking-widest uppercase mb-1">שלב 1</p>
             <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">מתרשמים</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">מתרשמים מהתוכנית והמתאמנים המרוצים שלי — <span class="text-[#5bd4ff]">אתם נמצאים כאן עכשיו</span></p>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">מתרשמים מהתוכנית והמתאמנים המרוצים שלי — <span
+                class="text-[#5bd4ff]">אתם נמצאים כאן עכשיו</span></p>
           </div>
         </div>
 
         <!-- Step 2 -->
         <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
           <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
+            <div
+              class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
               <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">edit_note</span>
             </div>
-            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
+            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1">
+            </div>
           </div>
           <div class="process-content pb-8 flex-1">
             <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 2</p>
             <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">משאירים פרטים</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">ממלאים את הטופס פה למטה או שולחים הודעה בוואצפ — זה לוקח דקה אחת</p>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">ממלאים את הטופס פה למטה או שולחים הודעה בוואצפ
+              — זה לוקח דקה אחת</p>
           </div>
         </div>
 
         <!-- Step 3 -->
         <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
           <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
+            <div
+              class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
               <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">call</span>
             </div>
-            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
+            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1">
+            </div>
           </div>
           <div class="process-content pb-8 flex-1">
             <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 3</p>
             <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">לשיחת התמאה </h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">אני אישית אתקשר להבין יחד איתך מה המטרות שלך, והאם התוכנית מתאימה לך. אם כן — אסביר איך הכל עובד ונצא לדרך. אם לא — אכוון אותך לאפשרות שהכי מתאימה לך.</p>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">אני אישית אתקשר להבין יחד איתך מה המטרות שלך,
+              והאם התוכנית מתאימה לך. אם כן — אסביר איך הכל עובד ונצא לדרך. אם לא — אכוון אותך לאפשרות שהכי מתאימה לך.
+            </p>
           </div>
         </div>
 
         <!-- Step 4 -->
         <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
           <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
+            <div
+              class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
               <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">assignment</span>
             </div>
-            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
+            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1">
+            </div>
           </div>
           <div class="process-content pb-8 flex-1">
             <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 4</p>
             <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">פגישת התחלה</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">נעשה את פגישת התחלת התהליך שלנו — נבנה לך תוכנית תזונה ואימון שתתאים לך בדיוק כדי להגיע אל המטרות שלך</p>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">נעשה את פגישת התחלת התהליך שלנו — נבנה לך
+              תוכנית תזונה ואימון שתתאים לך בדיוק כדי להגיע אל המטרות שלך</p>
           </div>
         </div>
 
         <!-- Step 5 -->
         <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
           <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
+            <div
+              class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
               <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">monitoring</span>
             </div>
-            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
+            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1">
+            </div>
           </div>
           <div class="process-content pb-8 flex-1">
             <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 5</p>
             <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">יוצאים לדרך</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">אני אוודא דרך הוואצפ, האפליקציה והפגישות שאנחנו מתקדמים כמו שרצינו. אם לא — אעשה את השינויים הנדרשים. זה פשוט — אני רק צריך שתהיו מחויבים להנחיות שלי.</p>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">אני אוודא דרך הוואצפ, האפליקציה והפגישות שאנחנו
+              מתקדמים כמו שרצינו. אם לא — אעשה את השינויים הנדרשים. זה פשוט — אני רק צריך שתהיו מחויבים להנחיות שלי.</p>
           </div>
         </div>
 
         <!-- Step 6 -->
         <div class="process-step flex gap-6 items-start pb-0" data-delay="100">
           <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
+            <div
+              class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3]/60 bg-[#0c0e0f] flex items-center justify-center z-10">
               <span class="material-symbols-outlined text-[#087fa3]/80 text-2xl">school</span>
             </div>
-            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1"></div>
+            <div class="process-line w-px flex-1 min-h-[2rem] bg-gradient-to-b from-[#087fa3]/40 to-[#087fa3]/15 mt-1">
+            </div>
           </div>
           <div class="process-content pb-8 flex-1">
             <p class="text-xs font-label text-[#087fa3]/70 tracking-widest uppercase mb-1">שלב 6</p>
             <h3 class="text-xl font-headline font-semibold text-[#e2e2e3] mb-1">לומדים את השגרה</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">תוך כדי התהליך אלמד אתכם איך לנהל את שגרת התזונה והאימונים לבד — כדי שתגיעו אל היעד הכי מהר שאפשר, ותהיו מוכנים לדרך העצמאית</p>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">תוך כדי התהליך אלמד אתכם איך לנהל את שגרת
+              התזונה והאימונים לבד — כדי שתגיעו אל היעד הכי מהר שאפשר, ותהיו מוכנים לדרך העצמאית</p>
           </div>
         </div>
 
         <!-- Step 7 — Final -->
         <div class="process-step flex gap-6 items-start" data-delay="100">
           <div class="flex flex-col items-center flex-shrink-0">
-            <div class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3] bg-gradient-to-br from-[#0a9bc4]/20 to-[#006781]/20 flex items-center justify-center z-10 shadow-[0_0_20px_rgba(10,155,196,0.3)]">
+            <div
+              class="process-icon w-14 h-14 rounded-full border-2 border-[#087fa3] bg-gradient-to-br from-[#0a9bc4]/20 to-[#006781]/20 flex items-center justify-center z-10 shadow-[0_0_20px_rgba(10,155,196,0.3)]">
               <span class="material-symbols-outlined text-[#5bd4ff] text-2xl">emoji_events</span>
             </div>
           </div>
           <div class="process-content pb-2 flex-1">
             <p class="text-xs font-label text-[#087fa3] tracking-widest uppercase mb-1">המטרה</p>
             <h3 class="text-xl font-headline font-semibold text-[#5bd4ff] mb-1">הגוף שרצית</h3>
-            <p class="text-[#9abaca] font-label text-sm leading-relaxed">אתם מסתובבים עם הגוף הבריא והחטוב שלכם — כמו כל החברה שראיתם למעלה</p>
+            <p class="text-[#9abaca] font-label text-sm leading-relaxed">אתם מסתובבים עם הגוף הבריא והחטוב שלכם — כמו כל
+              החברה שראיתם למעלה</p>
           </div>
         </div>
 
@@ -1429,186 +1415,82 @@
     <div class="flex flex-col items-center px-0 md:px-6 pb-12">
       <a href="#contact"
         class="w-full md:w-auto inline-flex items-center justify-center gap-4 bg-gradient-to-r from-[#0a9bc4] to-[#006781] text-white px-14 py-5 rounded-none md:rounded-full shadow-[0_0_15px_rgba(10,155,196,0.3)] hover:scale-[1.02] active:scale-95 transition-all duration-300 no-underline">
-        <span class="font-headline font-bold text-2xl leading-none drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]"> בוא נדבר 
-           </span>
+        <span class="font-headline font-bold text-2xl leading-none drop-shadow-[0_0_4px_rgba(255,255,255,0.5)]"> בוא
+          נדבר
+        </span>
       </a>
     </div>
   </div>
 
-  <!-- How It Works — Curved Interactive Journey -->
-  <section id="how-it-works" class="py-24 px-6 md:px-20 bg-[#0c0e0f] overflow-hidden">
-    <div class="max-w-6xl mx-auto text-center mb-4">
+  <!-- How It Works — Grid Layout -->
+  <section id="how-it-works" class="py-16 px-6 md:px-20 bg-[#0c0e0f]">
+    <div class="max-w-2xl mx-auto text-center mb-8">
       <h2 class="text-3xl md:text-5xl font-bold font-headline drop-shadow-[0_0_15px_rgba(91,212,255,0.4)] mb-4">
-        מה תכלס תקבלו בתוכנית ? </h2>
+        מה תכלס תקבלו בתוכנית?</h2>
     </div>
 
-    <div class="how-it-works-container">
-      <!-- Curved Path Background -->
-      <svg class="orbital-path-svg" viewBox="0 0 1000 400" preserveAspectRatio="none">
-        <defs>
-          <linearGradient id="arc-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" stop-color="#087fa3" stop-opacity="0" />
-            <stop offset="50%" stop-color="#087fa3" stop-opacity="0.8" />
-            <stop offset="100%" stop-color="#087fa3" stop-opacity="0" />
-          </linearGradient>
-        </defs>
-        <path id="orbital-curve" d="M100,350 Q500,50 900,350" fill="none" stroke="url(#arc-gradient)" stroke-width="4"
-          stroke-linecap="round" />
-
-        <text class="hidden md:block" fill="#5bd4ff" font-family="'Assistant', sans-serif" font-weight="900"
-          font-size="28" letter-spacing="2">
-          <textPath id="active-step-label" href="#orbital-curve" startOffset="50%" text-anchor="middle">
-          </textPath>
-        </text>
-
-        <!-- Previous/Next Step Labels (Curved) -->
-        <text class="hidden md:block" fill="#3f484d" font-family="'Assistant', sans-serif" font-weight="700"
-          font-size="18" opacity="0.6">
-          <textPath id="prev-step-label" href="#orbital-curve" startOffset="20%" text-anchor="middle">
-          </textPath>
-        </text>
-        <text class="hidden md:block" fill="#3f484d" font-family="'Assistant', sans-serif" font-weight="700"
-          font-size="18" opacity="0.6">
-          <textPath id="next-step-label" href="#orbital-curve" startOffset="80%" text-anchor="middle">
-          </textPath>
-        </text>
-      </svg>
-
-      <!-- Navigation Arrows at Top -->
-      <div class="absolute top-[420px] flex items-center justify-center gap-80 z-40 w-full px-10">
-        <button onclick="shiftHowStep(-1)" class="how-nav-arrow prev">
-          <span class="material-symbols-outlined text-3xl">arrow_forward</span>
-        </button>
-        <button onclick="shiftHowStep(1)" class="how-nav-arrow next">
-          <span class="material-symbols-outlined text-3xl">arrow_back</span>
-        </button>
+    <div class="max-w-2xl mx-auto">
+      <!-- 3×3 Grid -->
+      <div class="how-grid">
+        <div class="how-grid-item active" data-how="0" onclick="selectHowItem(0)">
+          <span class="how-grid-label">פגישת היכרות</span>
+          <div class="how-grid-icon-box">
+            <span class="material-symbols-outlined" style="font-size:2rem">handshake</span>
+          </div>
+        </div>
+        <div class="how-grid-item" data-how="1" onclick="selectHowItem(1)">
+          <span class="how-grid-label">תוכנית תזונה מלאה</span>
+          <div class="how-grid-icon-box">
+            <span class="material-symbols-outlined" style="font-size:2rem">restaurant</span>
+          </div>
+        </div>
+        <div class="how-grid-item" data-how="2" onclick="selectHowItem(2)">
+          <span class="how-grid-label">שגרת אימונים ייחודית</span>
+          <div class="how-grid-icon-box">
+            <span class="material-symbols-outlined" style="font-size:2rem">fitness_center</span>
+          </div>
+        </div>
+        <div class="how-grid-item" data-how="3" onclick="selectHowItem(3)">
+          <span class="how-grid-label">אימון טכניקה מלא</span>
+          <div class="how-grid-icon-box">
+            <span class="material-symbols-outlined" style="font-size:2rem">sports_martial_arts</span>
+          </div>
+        </div>
+        <div class="how-grid-item" data-how="4" onclick="selectHowItem(4)">
+          <span class="how-grid-label">זמינות מהירה בוואצפ</span>
+          <div class="how-grid-icon-box">
+            <span class="material-symbols-outlined" style="font-size:2rem">chat</span>
+          </div>
+        </div>
+        <div class="how-grid-item" data-how="5" onclick="selectHowItem(5)">
+          <span class="how-grid-label">פגישת עדכון בוידאו</span>
+          <div class="how-grid-icon-box">
+            <span class="material-symbols-outlined" style="font-size:2rem">videocam</span>
+          </div>
+        </div>
+        <div class="how-grid-item" data-how="6" onclick="selectHowItem(6)">
+          <span class="how-grid-label">האפליקציה שלי</span>
+          <div class="how-grid-icon-box">
+            <span class="material-symbols-outlined" style="font-size:2rem">phone_iphone</span>
+          </div>
+        </div>
+        <div class="how-grid-item" data-how="7" onclick="selectHowItem(7)">
+          <span class="how-grid-label">חטובים לנצח - הקורס</span>
+          <div class="how-grid-icon-box">
+            <span class="material-symbols-outlined" style="font-size:2rem">school</span>
+          </div>
+        </div>
+        <div class="how-grid-item" data-how="8" onclick="selectHowItem(8)">
+          <span class="how-grid-label">מעטפת בונוסים מלאה</span>
+          <div class="how-grid-icon-box">
+            <span class="material-symbols-outlined" style="font-size:2rem">card_giftcard</span>
+          </div>
+        </div>
       </div>
 
-
-
-      <!-- Active Content Card -->
-      <div class="how-content-display">
-        <!-- Step 1 -->
-        <div class="how-slide active" data-how="0">
-          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">1</span>
-          <div
-            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
-            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">handshake</span>
-          </div>
-          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">פגישת היכרות</h3>
-          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
-            פגישת היכרות פרונטלית מעמיקה. נבין יחד את כל המטרות שלך, החששות, המגבלות, כדי שהתוכנית תהיה הכי מותאמת
-            ונכונה עבורך שאפשר. בנוסף נעשה מדידת אחוזי שומן והיקפים כדי להבין מהי נקודת הפתיחה האמיתית שלנו.
-          </p>
-        </div>
-
-        <!-- Step 2 -->
-        <div class="how-slide" data-how="1">
-          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">2</span>
-          <div
-            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
-            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">restaurant</span>
-          </div>
-          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">תוכנית תזונה מלאה</h3>
-          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
-            אני לוקח את מה שאתם אוהבים ורגילים, ועושה כמה שפחות שינויים, אבל בדיוק מספיק כדי שתראו תוצאות נדירות.
-          </p>
-        </div>
-
-        <!-- Step 3 -->
-        <div class="how-slide" data-how="2">
-          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">3</span>
-          <div
-            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
-            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">fitness_center</span>
-          </div>
-          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">שגרת אימונים ייחודית</h3>
-          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
-            תגידו לי מה אתם רוצים לראות במראה, וכמה זמן יש לכם. אני אגרום לזה לקרות במכון.
-          </p>
-        </div>
-
-        <!-- Step 4 -->
-        <div class="how-slide" data-how="3">
-          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">4</span>
-          <div
-            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
-            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">sports_martial_arts</span>
-          </div>
-          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">אימון טכניקה מלא</h3>
-          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
-            ניפגש במכון ונוודא שהטכניקה שלך מושלמת, כדי שהתוצאות יהיו מושלמות. לא פחות.
-          </p>
-        </div>
-
-        <!-- Step 5 -->
-        <div class="how-slide" data-how="4">
-          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">5</span>
-          <div
-            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
-            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">chat</span>
-          </div>
-          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">זמינות מהירה בוואצפ</h3>
-          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
-            אני פה בשבילכם לכל שאלה :)
-          </p>
-        </div>
-
-        <!-- Step 6 -->
-        <div class="how-slide" data-how="5">
-          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">6</span>
-          <div
-            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
-            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">videocam</span>
-          </div>
-          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">פגישת עדכון בוידאו</h3>
-          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
-            אחת לשבועיים נוודא שאתם אכן בפועל מתקדמים, ואם משהו הכי קטן פחות עובד, נסדר אותו כדי שנגיע אל היעד שלנו
-            ביעילות.
-          </p>
-        </div>
-
-        <!-- Step 7 -->
-        <div class="how-slide" data-how="6">
-          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">7</span>
-          <div
-            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
-            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">phone_iphone</span>
-          </div>
-          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">האפליקציה שלי</h3>
-          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
-            כדי שהכל יהיה מונגש בצורה הכי פשוטה שיש. תוכלו לעקוב אחרי האוכל והאימונים שלכם בצורה הכי קלה שיש, אפילו יש
-            לכם AI שלי לכל שאלה ובעיה.
-          </p>
-        </div>
-
-        <!-- Step 8 -->
-        <div class="how-slide" data-how="7">
-          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">8</span>
-          <div
-            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
-            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">school</span>
-          </div>
-          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">חטובים לנצח - הקורס</h3>
-          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
-            הדרך שלי לוודא שאני המאמן האחרון שאי פעם תצטרכו. אתם תלמדו איך להתאים לעצמכם את האימונים, התזונה והשגרה כמו
-            מאמני עילית.
-          </p>
-        </div>
-
-        <!-- Step 9 -->
-        <div class="how-slide" data-how="8">
-          <span class="text-[#087fa3] font-black text-6xl mb-4 opacity-50">9</span>
-          <div
-            class="w-20 h-20 rounded-full bg-[#087fa3]/20 flex items-center justify-center mb-2 shadow-[0_0_20px_rgba(8,127,163,0.3)]">
-            <span class="material-symbols-outlined text-5xl text-[#5bd4ff]">card_giftcard</span>
-          </div>
-          <h3 class="text-2xl md:text-3xl font-headline font-bold text-[#5bd4ff] mb-2">מעטפת בונוסים מלאה</h3>
-          <p class="text-[#c8d8e0] text-lg md:text-xl font-body leading-relaxed max-w-2xl">
-            קורס טכניקה, מאגר תוכנית האימון שלי, ספר המתכונים שלי לעצלנים, המדריך למזווה מנצח ועוד המון כלים שיעזרו לכם
-            להצליח.
-          </p>
-        </div>
+      <!-- Explanation Box -->
+      <div class="how-explanation-box" id="how-explanation">
+        <p id="how-explanation-text">פגישת היכרות פרונטלית מעמיקה. נבין יחד את כל המטרות שלך, החששות, המגבלות, כדי שהתוכנית תהיה הכי מותאמת ונכונה עבורך שאפשר. בנוסף נעשה מדידת אחוזי שומן והיקפים כדי להבין מהי נקודת הפתיחה האמיתית שלנו.</p>
       </div>
     </div>
   </section>
@@ -1628,7 +1510,7 @@
     </div>
   </div>
 
-  
+
   <!-- FAQ Accordion -->
   <section id="faq" class="py-16 px-6 md:px-20 bg-[#121415]">
     <div class="max-w-3xl mx-auto">
@@ -1692,27 +1574,131 @@
 
   <!-- App Download Section -->
   <section id="app" class="py-12 px-6 md:px-20 bg-[#0c0e0f] overflow-hidden">
+    <style>
+      /* Phone Gallery */
+      #app-phone-viewport {
+        position: absolute;
+        inset: 0;
+        overflow: hidden;
+      }
+
+      #app-phone-track {
+        display: flex;
+        width: 300%;
+        height: 100%;
+        transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+        will-change: transform;
+      }
+
+      .app-screen {
+        flex-shrink: 0;
+        width: 33.3333%;
+        height: 100%;
+        object-fit: cover;
+        object-position: top;
+      }
+
+      .app-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #3f484d;
+        transition: background 0.3s, transform 0.3s;
+        cursor: pointer;
+        border: none;
+        padding: 0;
+      }
+
+      .app-dot.active {
+        background: #087fa3;
+        transform: scale(1.3);
+      }
+    </style>
     <div class="max-w-7xl mx-auto">
       <h2 class="text-5xl font-light font-headline leading-tight text-center md:text-right mb-10 md:mb-16">כל מה שאתה
         צריך נמצא באפליקצייה שלי</h2>
-      <div class="flex flex-col md:flex-row items-center gap-20">
+      <div class="flex flex-col md:flex-row items-center gap-12 md:gap-20">
+        <!-- Text -->
         <div class="w-full md:w-1/2 space-y-10 order-2 md:order-1">
           <p class="text-[#9abaca] text-lg font-body leading-relaxed max-w-md">
             האפליקציה הבלעדית שלנו מאפשרת לך לנהל את האימונים, התזונה וההתקדמות שלך מכל מקום. יומן אימונים חכם ומעקב
             מדויק.
           </p>
         </div>
-      </div>
-      <div class="w-full md:w-1/2 order-1 md:order-2 flex justify-center">
-        <div
-          class="relative w-72 h-[550px] bg-[#1a1c1d] rounded-[3rem] border-[8px] border-[#333536] overflow-hidden shadow-2xl">
-          <img class="w-full h-full object-cover"
-            data-alt="mobile app interface showing minimalist workout tracking data and clean typography on a dark screen"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3ruTlroPiLdgIZwqD4tzR_iCO-jI20algIJOVfT5pQgpOm5WvNf1wHCI33H-5-3dd7_I3skPeo_M9V6EOYHVI3hj39wMIBSuKkaN94M9WT0cDW91kLum_3hE_Raw2z7HtfMn9zzkLP-Q4K_vlBE2_-K_uuvAumYphMTcShZv0wUgs6Rz51dYOTJONpfbyWedfK1ErSetgJ86h-IpUtXvIH8j3U4r3coOyeyiif2pmLYKiuYZyYvNRm4So--p3Ipmhquw_BbV43cs"
-            style="">
+        <!-- Phone Gallery -->
+        <div class="w-full md:w-1/2 order-1 md:order-2 flex flex-col items-center gap-5">
+          <!-- Phone frame -->
+          <div
+            class="relative w-[260px] md:w-72 h-[500px] md:h-[550px] bg-[#1a1c1d] rounded-[3rem] border-[8px] border-[#333536] shadow-[0_30px_80px_rgba(0,0,0,0.6)] overflow-hidden">
+            <!-- Notch -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-6 bg-[#333536] rounded-b-2xl z-20"></div>
+            <!-- Slide track inside viewport -->
+            <div id="app-phone-viewport">
+              <div id="app-phone-track">
+                <img class="app-screen" src="images/A1.png" alt="מסך אפליקציה 1" draggable="false">
+                <img class="app-screen" src="images/A2.png" alt="מסך אפליקציה 2" draggable="false">
+                <img class="app-screen" src="images/A3.png" alt="מסך אפליקציה 3" draggable="false">
+              </div>
+            </div>
+            <!-- Inner glow overlay -->
+            <div class="absolute inset-0 pointer-events-none shadow-[inset_0_0_40px_rgba(8,127,163,0.08)]"></div>
+          </div>
+          <!-- Dot indicators -->
+          <div id="app-dots" class="flex gap-3 items-center">
+            <button class="app-dot active" onclick="goAppSlide(0)" aria-label="מסך 1"></button>
+            <button class="app-dot" onclick="goAppSlide(1)" aria-label="מסך 2"></button>
+            <button class="app-dot" onclick="goAppSlide(2)" aria-label="מסך 3"></button>
+          </div>
         </div>
       </div>
     </div>
+    <script>
+      (function () {
+        var current = 0;
+        var total = 3;
+        var track = document.getElementById('app-phone-track');
+        var dots = document.querySelectorAll('#app-dots .app-dot');
+
+        function goAppSlide(idx) {
+          current = ((idx % total) + total) % total;
+          // Each slide = 1/3 of 300%-wide track, so step = 33.333% of track
+          track.style.transform = 'translateX(-' + (current * 33.3333) + '%)';
+          dots.forEach(function (d, i) {
+            d.classList.toggle('active', i === current);
+          });
+        }
+        window.goAppSlide = goAppSlide;
+
+        // Auto-advance every 3.5s
+        var autoTimer = setInterval(function () { goAppSlide(current + 1); }, 3500);
+
+        // Touch swipe
+        var vp = document.getElementById('app-phone-viewport');
+        var startX = 0;
+        vp.addEventListener('touchstart', function (e) {
+          startX = e.touches[0].clientX;
+          clearInterval(autoTimer);
+        }, { passive: true });
+        vp.addEventListener('touchend', function (e) {
+          var dx = e.changedTouches[0].clientX - startX;
+          if (Math.abs(dx) > 40) goAppSlide(dx < 0 ? current + 1 : current - 1);
+        }, { passive: true });
+
+        // Mouse drag
+        var dragging = false;
+        vp.addEventListener('mousedown', function (e) {
+          startX = e.clientX; dragging = true;
+          clearInterval(autoTimer);
+          e.preventDefault();
+        });
+        document.addEventListener('mouseup', function (e) {
+          if (!dragging) return;
+          var dx = e.clientX - startX;
+          if (Math.abs(dx) > 40) goAppSlide(dx < 0 ? current + 1 : current - 1);
+          dragging = false;
+        });
+      })();
+    </script>
   </section>
   <!-- Contact Form (Lead Gen) -->
   <section id="contact" class="py-12 px-6 md:px-20 bg-[#121415]">
@@ -2180,49 +2166,29 @@
       }
     }
 
-    // ── How It Works Interactive ──
-    let currentHowStep = 0;
-    const totalHowSteps = 9;
+    // ── How It Works Grid ──
+    const howDescriptions = [
+      'פגישת היכרות פרונטלית מעמיקה. נבין יחד את כל המטרות שלך, החששות, המגבלות, כדי שהתוכנית תהיה הכי מותאמת ונכונה עבורך שאפשר. בנוסף נעשה מדידת אחוזי שומן והיקפים כדי להבין מהי נקודת הפתיחה האמיתית שלנו.',
+      'אני לוקח את מה שאתם אוהבים ורגילים, ועושה כמה שפחות שינויים, אבל בדיוק מספיק כדי שתראו תוצאות נדירות.',
+      'תגידו לי מה אתם רוצים לראות במראה, וכמה זמן יש לכם. אני אגרום לזה לקרות במכון.',
+      'ניפגש במכון ונוודא שהטכניקה שלך מושלמת, כדי שהתוצאות יהיו מושלמות. לא פחות.',
+      'אני פה בשבילכם לכל שאלה :)',
+      'אחת לשבועיים נוודא שאתם אכן בפועל מתקדמים, ואם משהו הכי קטן פחות עובד, נסדר אותו כדי שנגיע אל היעד שלנו ביעילות.',
+      'כדי שהכל יהיה מונגש בצורה הכי פשוטה שיש. תוכלו לעקוב אחרי האוכל והאימונים שלכם בצורה הכי קלה שיש, אפילו יש לכם AI שלי לכל שאלה ובעיה.',
+      'הדרך שלי לוודא שאני המאמן האחרון שאי פעם תצטרכו. אתם תלמדו איך להתאים לעצמכם את האימונים, התזונה והשגרה כמו מאמני עילית.',
+      'קורס טכניקה, מאגר תוכנית האימון שלי, ספר המתכונים שלי לעצלנים, המדריך למזווה מנצח ועוד המון כלים שיעזרו לכם להצליח.',
+    ];
 
-    function goToHowStep(index) {
-      currentHowStep = index;
-      updateHowUI();
-    }
-
-    function shiftHowStep(dir) {
-      currentHowStep = (currentHowStep + dir + totalHowSteps) % totalHowSteps;
-      updateHowUI();
-    }
-
-    function updateHowUI() {
-      // Update Slides
-      document.querySelectorAll('.how-slide').forEach((slide) => {
-        slide.classList.toggle('active', parseInt(slide.getAttribute('data-how')) === currentHowStep);
+    function selectHowItem(index) {
+      document.querySelectorAll('.how-grid-item').forEach((item) => {
+        item.classList.toggle('active', parseInt(item.getAttribute('data-how')) === index);
       });
-
-      // Update Curved Text Labels (Active, Prev, Next)
-      const total = 9;
-      const prevIdx = (currentHowStep - 1 + total) % total;
-      const nextIdx = (currentHowStep + 1 + total) % total;
-
-      const activeSlide = document.querySelector(`.how-slide[data-how="${currentHowStep}"]`);
-      const prevSlide = document.querySelector(`.how-slide[data-how="${prevIdx}"]`);
-      const nextSlide = document.querySelector(`.how-slide[data-how="${nextIdx}"]`);
-
-      if (activeSlide) {
-        document.getElementById('active-step-label').textContent = activeSlide.querySelector('h3').textContent;
-      }
-      if (prevSlide) {
-        document.getElementById('prev-step-label').textContent = prevSlide.querySelector('h3').textContent;
-      }
-      if (nextSlide) {
-        document.getElementById('next-step-label').textContent = nextSlide.querySelector('h3').textContent;
-      }
-
-      // Update Dots (if any remain)
-      document.querySelectorAll('.orbital-dot').forEach((dot) => {
-        dot.classList.toggle('active', parseInt(dot.getAttribute('data-how')) === currentHowStep);
-      });
+      const textEl = document.getElementById('how-explanation-text');
+      textEl.textContent = howDescriptions[index];
+      // Restart animation
+      textEl.style.animation = 'none';
+      textEl.offsetHeight;
+      textEl.style.animation = '';
     }
   </script>
 
@@ -2239,7 +2205,7 @@
   <script>
     (function () {
       var viewport = document.getElementById('ba-viewport');
-      var track    = document.getElementById('ba-track');
+      var track = document.getElementById('ba-track');
       if (!viewport || !track) return;
 
       // Clone cards 4 more times so we have 5 identical groups
@@ -2248,15 +2214,15 @@
         originals.forEach(function (c) { track.appendChild(c.cloneNode(true)); });
       }
 
-      var GAP        = 16;
+      var GAP = 16;
       var groupWidth = 0; // measured after layout
-      var x          = 0; // current translateX (negative = moved left)
-      var vel        = 0;
-      var dragging   = false;
+      var x = 0; // current translateX (negative = moved left)
+      var vel = 0;
+      var dragging = false;
       var startPointer = 0;
-      var startX     = 0;
+      var startX = 0;
       var lastPointer = 0;
-      var lastTime   = 0;
+      var lastTime = 0;
       var raf;
 
       function measure() {
@@ -2270,7 +2236,7 @@
       function apply() {
         // wrap seamlessly
         if (x < -groupWidth * 3) x += groupWidth;
-        if (x > -groupWidth)     x -= groupWidth;
+        if (x > -groupWidth) x -= groupWidth;
         track.style.transform = 'translateX(' + x + 'px)';
       }
 
@@ -2288,19 +2254,19 @@
         cancelAnimationFrame(raf);
         vel = 0;
         startPointer = clientX;
-        startX       = x;
-        lastPointer  = clientX;
-        lastTime     = Date.now();
+        startX = x;
+        lastPointer = clientX;
+        lastTime = Date.now();
         viewport.style.cursor = 'grabbing';
       }
 
       function pointerMove(clientX) {
         if (!dragging) return;
         var now = Date.now();
-        var dt  = now - lastTime || 1;
+        var dt = now - lastTime || 1;
         vel = (clientX - lastPointer) / dt * 16; // ~px per frame at 60fps
         lastPointer = clientX;
-        lastTime    = now;
+        lastTime = now;
         x = startX + (clientX - startPointer);
         apply();
       }
@@ -2323,8 +2289,8 @@
 
       // Mouse
       viewport.addEventListener('mousedown', function (e) { pointerStart(e.clientX); });
-      window.addEventListener('mousemove',   function (e) { pointerMove(e.clientX); });
-      window.addEventListener('mouseup',     pointerEnd);
+      window.addEventListener('mousemove', function (e) { pointerMove(e.clientX); });
+      window.addEventListener('mouseup', pointerEnd);
 
       // Init after fonts/images settle
       window.addEventListener('load', measure);
@@ -2337,7 +2303,7 @@
   <script>
     (function () {
       var viewport = document.getElementById('ba-viewport-2');
-      var track    = document.getElementById('ba-track-2');
+      var track = document.getElementById('ba-track-2');
       if (!viewport || !track) return;
 
       var originals = Array.from(track.children);
@@ -2345,15 +2311,15 @@
         originals.forEach(function (c) { track.appendChild(c.cloneNode(true)); });
       }
 
-      var GAP        = 16;
+      var GAP = 16;
       var groupWidth = 0;
-      var x          = 0;
-      var vel        = 0;
-      var dragging   = false;
+      var x = 0;
+      var vel = 0;
+      var dragging = false;
       var startPointer = 0;
-      var startX     = 0;
+      var startX = 0;
       var lastPointer = 0;
-      var lastTime   = 0;
+      var lastTime = 0;
       var raf;
 
       function measure() {
@@ -2364,7 +2330,7 @@
 
       function apply() {
         if (x < -groupWidth * 3) x += groupWidth;
-        if (x > -groupWidth)     x -= groupWidth;
+        if (x > -groupWidth) x -= groupWidth;
         track.style.transform = 'translateX(' + x + 'px)';
       }
 
@@ -2382,19 +2348,19 @@
         cancelAnimationFrame(raf);
         vel = 0;
         startPointer = clientX;
-        startX       = x;
-        lastPointer  = clientX;
-        lastTime     = Date.now();
+        startX = x;
+        lastPointer = clientX;
+        lastTime = Date.now();
         viewport.style.cursor = 'grabbing';
       }
 
       function pointerMove(clientX) {
         if (!dragging) return;
         var now = Date.now();
-        var dt  = now - lastTime || 1;
+        var dt = now - lastTime || 1;
         vel = (clientX - lastPointer) / dt * 16;
         lastPointer = clientX;
-        lastTime    = now;
+        lastTime = now;
         x = startX + (clientX - startPointer);
         apply();
       }
@@ -2407,11 +2373,11 @@
       }
 
       viewport.addEventListener('touchstart', function (e) { pointerStart(e.touches[0].clientX); }, { passive: true });
-      viewport.addEventListener('touchmove',  function (e) { pointerMove(e.touches[0].clientX); },  { passive: true });
+      viewport.addEventListener('touchmove', function (e) { pointerMove(e.touches[0].clientX); }, { passive: true });
       viewport.addEventListener('touchend', pointerEnd);
       viewport.addEventListener('mousedown', function (e) { pointerStart(e.clientX); });
-      window.addEventListener('mousemove',   function (e) { pointerMove(e.clientX); });
-      window.addEventListener('mouseup',     pointerEnd);
+      window.addEventListener('mousemove', function (e) { pointerMove(e.clientX); });
+      window.addEventListener('mouseup', pointerEnd);
 
       window.addEventListener('load', measure);
       setTimeout(measure, 100);
@@ -2422,7 +2388,7 @@
   <script>
     (function () {
       var viewport = document.getElementById('ba-viewport-3');
-      var track    = document.getElementById('ba-track-3');
+      var track = document.getElementById('ba-track-3');
       if (!viewport || !track) return;
 
       var originals = Array.from(track.children);
@@ -2450,7 +2416,7 @@
 
       function apply() {
         if (x < -groupWidth * 3) x += groupWidth;
-        if (x > -groupWidth)     x -= groupWidth;
+        if (x > -groupWidth) x -= groupWidth;
         track.style.transform = 'translateX(' + x + 'px)';
       }
 
@@ -2468,19 +2434,19 @@
         dragging = true;
         vel = 0;
         startPointer = clientX;
-        startX       = x;
-        lastPointer  = clientX;
-        lastTime     = Date.now();
+        startX = x;
+        lastPointer = clientX;
+        lastTime = Date.now();
         viewport.style.cursor = 'grabbing';
       }
 
       function pointerMove(clientX) {
         if (!dragging) return;
         var now = Date.now();
-        var dt  = now - lastTime || 1;
+        var dt = now - lastTime || 1;
         vel = (clientX - lastPointer) / dt * 16;
         lastPointer = clientX;
-        lastTime    = now;
+        lastTime = now;
         x = startX + (clientX - startPointer);
         apply();
       }
@@ -2493,11 +2459,11 @@
       }
 
       viewport.addEventListener('touchstart', function (e) { pointerStart(e.touches[0].clientX); }, { passive: true });
-      viewport.addEventListener('touchmove',  function (e) { pointerMove(e.touches[0].clientX); },  { passive: true });
-      viewport.addEventListener('touchend',   pointerEnd);
-      viewport.addEventListener('mousedown',  function (e) { pointerStart(e.clientX); });
-      window.addEventListener('mousemove',    function (e) { pointerMove(e.clientX); });
-      window.addEventListener('mouseup',      pointerEnd);
+      viewport.addEventListener('touchmove', function (e) { pointerMove(e.touches[0].clientX); }, { passive: true });
+      viewport.addEventListener('touchend', pointerEnd);
+      viewport.addEventListener('mousedown', function (e) { pointerStart(e.clientX); });
+      window.addEventListener('mousemove', function (e) { pointerMove(e.clientX); });
+      window.addEventListener('mouseup', pointerEnd);
 
       window.addEventListener('load', measure);
       setTimeout(measure, 100);
@@ -2508,7 +2474,7 @@
   <script>
     (function () {
       var viewport = document.getElementById('hero-ba-viewport');
-      var track    = document.getElementById('hero-ba-track');
+      var track = document.getElementById('hero-ba-track');
       if (!viewport || !track) return;
 
       // Clone cards so the strip loops
@@ -2537,7 +2503,7 @@
 
       function apply() {
         if (x < -groupWidth * 3) x += groupWidth;
-        if (x > -groupWidth)     x -= groupWidth;
+        if (x > -groupWidth) x -= groupWidth;
         track.style.transform = 'translateX(' + x + 'px)';
       }
 
@@ -2555,19 +2521,19 @@
         dragging = true;
         vel = 0;
         startPointer = clientX;
-        startX       = x;
-        lastPointer  = clientX;
-        lastTime     = Date.now();
+        startX = x;
+        lastPointer = clientX;
+        lastTime = Date.now();
         viewport.style.cursor = 'grabbing';
       }
 
       function pointerMove(clientX) {
         if (!dragging) return;
         var now = Date.now();
-        var dt  = now - lastTime || 1;
+        var dt = now - lastTime || 1;
         vel = (clientX - lastPointer) / dt * 16;
         lastPointer = clientX;
-        lastTime    = now;
+        lastTime = now;
         x = startX + (clientX - startPointer);
         apply();
       }
@@ -2581,11 +2547,11 @@
       }
 
       viewport.addEventListener('touchstart', function (e) { pointerStart(e.touches[0].clientX); }, { passive: true });
-      viewport.addEventListener('touchmove',  function (e) { pointerMove(e.touches[0].clientX); },  { passive: true });
-      viewport.addEventListener('touchend',   pointerEnd);
-      viewport.addEventListener('mousedown',  function (e) { pointerStart(e.clientX); });
-      window.addEventListener('mousemove',    function (e) { pointerMove(e.clientX); });
-      window.addEventListener('mouseup',      pointerEnd);
+      viewport.addEventListener('touchmove', function (e) { pointerMove(e.touches[0].clientX); }, { passive: true });
+      viewport.addEventListener('touchend', pointerEnd);
+      viewport.addEventListener('mousedown', function (e) { pointerStart(e.clientX); });
+      window.addEventListener('mousemove', function (e) { pointerMove(e.clientX); });
+      window.addEventListener('mouseup', pointerEnd);
 
       window.addEventListener('load', measure);
       setTimeout(measure, 100);
